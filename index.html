@@ -744,7 +744,9 @@
         // 1. 内置数据
         // ================================================================
         const DEFAULT_DATA = {
-            plants: [{
+            // 植物图鉴区域
+            plants: [
+            {
                 id: 'sunflower',
                 name: '向日葵',
                 emoji: '🌱',
@@ -756,7 +758,8 @@
                 recharge: '6秒',
                 special: '生产',
                 description: '最基本的阳光生产植物，每20秒生产25阳光，为你提供能量，在夜晚，生产的效率减半：每40秒25阳光。'
-            }, {
+            }, 
+            {
                 id: 'peashooter',
                 name: '豌豆射手',
                 emoji: '🌱',
@@ -768,7 +771,8 @@
                 recharge: '3秒',
                 special: '远程',
                 description: '最基础的攻击植物，向前方发射豌豆攻击僵尸，每3秒发射一颗豌豆，在第3.6秒击中僵尸，造成20点伤害。'
-            }, {
+            }, 
+            {
                 id: 'wallnut',
                 name: '坚果墙',
                 emoji: '🌱',
@@ -780,7 +784,8 @@
                 recharge: '30秒',
                 special: '防御',
                 description: '坚果墙拥有3600点生命值，可作为屏障阻挡僵尸前进。血量在3600（满血）时为健康状态，在2400时为破损状态，在1200时为重度破损状态。'
-            }, {
+            }, 
+            {
                 id: 'potatomine',
                 name: '土豆地雷',
                 emoji: '🌱',
@@ -792,7 +797,8 @@
                 recharge: '30秒',
                 special: '灰烬',
                 description: '土豆地雷需要准备15秒，出土后对本格僵尸造成1800点伤害。'
-            }, {
+            }, 
+            {
                 id: 'snowpea',
                 name: '寒冰射手',
                 emoji: '🌱',
@@ -804,7 +810,8 @@
                 recharge: '3秒',
                 special: '远程 · 减速',
                 description: '每3秒发射一颗寒冰豌豆，在第3.6秒对僵尸造成20点伤害并给予10秒减速。'
-            }, {
+            }, 
+            {
                 id: 'cherrybomb',
                 name: '樱桃炸弹',
                 emoji: '🌱',
@@ -816,7 +823,8 @@
                 recharge: '50秒',
                 special: '灰烬',
                 description: '放置2秒后，对 3x3 范围内的僵尸造成1800点伤害。'
-            }, {
+            }, 
+            {
                 id: 'repeater',
                 name: '双发射手',
                 emoji: '🌱',
@@ -828,7 +836,8 @@
                 recharge: '3秒',
                 special: '远程',
                 description: '这是豌豆射手的大哥，可以发射两颗豌豆，每3秒发射一次，在第3.6秒对僵尸造成一次两颗豌豆的共计40点伤害。'
-            }, {
+            }, 
+            {
                 id: 'chomper',
                 name: '大嘴花',
                 emoji: '🌱',
@@ -840,55 +849,7 @@
                 recharge: '8秒',
                 special: '吞噬',
                 description: '大嘴花一大口对前方僵尸造成1800伤害，需要42秒的消化时间。（与原版不同的是，面对巨人僵尸，原版只造成40伤害）'
-            }, {
-                id: 'jalapeno',
-                name: '火爆辣椒',
-                emoji: '🌱',
-                image: 'common/plant/火爆辣椒.png',
-                cost: 125,
-                health: 300,
-                damage: 1800,
-                range: '整行',
-                recharge: '50秒',
-                special: '灰烬',
-                description: '种植2秒后爆炸，对一整行僵尸造成1800点伤害。'
-            }, {
-                id: 'gatlingpea',
-                name: '机枪射手',
-                emoji: '🌱',
-                image: 'common/plant/机枪射手.png',
-                cost: 300,
-                health: 300,
-                damage: 20,
-                range: '直线',
-                recharge: '慢',
-                special: '远程',
-                description: '机枪射手连续发射四颗豌豆，是强大的火力单位。（还未加入重制版）'
-            }, {
-                id: 'cactus',
-                name: '仙人掌',
-                emoji: '🌱',
-                image: 'common/plant/仙人掌.png',
-                cost: 125,
-                health: 300,
-                damage: 20,
-                range: '直线',
-                recharge: '中等',
-                special: '远程',
-                description: '仙人掌的尖刺可以扎破气球僵尸的气球。每3秒发射一颗尖刺，第3.6秒对僵尸造成20点伤害。（还未加入重制版）'
-            }, {
-                id: 'cornpult',
-                name: '玉米投手',
-                emoji: '🌱',
-                image: 'common/plant/玉米投手.png',
-                cost: 100,
-                health: 300,
-                damage: 15,
-                range: '抛物线',
-                recharge: '中等',
-                special: '投掷',
-                description: '玉米投手投掷玉米粒，偶尔扔出黄油使僵尸眩晕。（还未加入重制版）'
-            },
+            }, 
             {
                 id: 'smallPuffShroom',
                 name: '小喷菇',
@@ -954,8 +915,281 @@
                 special: '灰烬',
                 description: '种植后2秒爆炸并留下坑洞，爆炸对7x7范围内僵尸造成1800点伤害。（蘑菇白天会睡觉）'
             },
+            {
+                id: 'TombWood',
+                name: '噬墓木',
+                emoji: '🌱',
+                image: 'common/plant/噬墓木.png',
+                cost: 75,
+                health: 300,
+                damage: 0,
+                range: '无',
+                recharge: '8秒',
+                special: '特种',
+                description: '只能种植在墓碑上，种植后需要8秒时间吞噬墓碑。原版名称是墓碑吞噬者，由于手环屏幕较小，5个字的名称可能溢出屏幕之外，所以就改了一下名字。'
+            },
+            {
+                id: 'TallNut',
+                name: '高坚果',
+                emoji: '🌱',
+                image: 'common/plant/高坚果.png',
+                cost: 125,
+                health: 7200,
+                damage: 0,
+                range: '无',
+                recharge: '30秒',
+                special: '防御',
+                description: '高坚果拥有超高生命值，一般僵尸需要72秒才能吃掉它。分别在4800和2400血量时切换破损形态。可以阻挡海豚僵尸和撑杆跳僵尸跳过。'
+            },
+            {
+                id: 'jalapeno',
+                name: '火爆辣椒',
+                emoji: '🌱',
+                image: 'common/plant/火爆辣椒.png',
+                cost: 125,
+                health: 300,
+                damage: 1800,
+                range: '整行',
+                recharge: '50秒',
+                special: '灰烬',
+                description: '种植2秒后爆炸，对一整行僵尸造成1800点伤害。'
+            }, 
+            {
+                id: 'Squash',
+                name: '倭瓜',
+                emoji: '🌱',
+                image: 'common/plant/倭瓜.png',
+                cost: 50,
+                health: 300,
+                damage: 1800,
+                range: '左右两边',
+                recharge: '30秒',
+                special: '压扁',
+                description: '倭瓜可以压扁左边或者右边的僵尸。'
+            },
+            {
+                id: 'IceShroom',
+                name: '寒冰菇',
+                emoji: '🌱',
+                image: 'common/plant/寒冰菇.png',
+                cost: 75,
+                health: 300,
+                damage: 20,
+                range: '全屏',
+                recharge: '50秒',
+                special: '冻结',
+                description: '对全屏僵尸施加4秒冻结，冻结后附加16秒减速。和原版一样，寒冰菇带有一颗豌豆的伤害。（这就是细节😏）（蘑菇白天会睡觉）'
+            },
+            {
+                id: 'gloomShroom',
+                name: '忧郁菇',
+                emoji: '🌱',
+                image: 'common/plant/忧郁菇.png',
+                cost: 150,
+                health: 300,
+                damage: 100,
+                range: '3x3范围',
+                recharge: '50秒',
+                special: '范围 · 紫卡',
+                description: '每3秒向四周发射孢子群，对范围内的所有僵尸造成100点伤害。紫卡特性：需要种植在大喷菇上。（蘑菇白天会睡觉）'
+            },
+            {
+                id: 'CoffeeBean',
+                name: '咖啡豆',
+                emoji: '🌱',
+                image: 'common/plant/咖啡豆.png',
+                cost: 75,
+                health: 300,
+                damage: 0,
+                range: '无',
+                recharge: '5秒',
+                special: '辅助',
+                description: '可以叫醒睡觉中的植物。'
+            },
+            {
+                id: 'LilyPad',
+                name: '睡莲',
+                emoji: '🌱',
+                image: 'common/plant/睡莲.png',
+                cost: 25,
+                health: 300,
+                damage: 0,
+                range: '无',
+                recharge: '2秒',
+                special: '平台',
+                description: '可以将非水生植物种植在水面上。'
+            },
+            {
+                id: 'Pot',
+                name: '花盆',
+                emoji: '🌱',
+                image: 'common/plant/花盆.png',
+                cost: 25,
+                health: 300,
+                damage: 0,
+                range: '无',
+                recharge: '2秒',
+                special: '平台',
+                description: '可以将植物种植在屋顶上。'
+            },
+            {
+                id: 'SpikeWeed',
+                name: '地刺',
+                emoji: '🌱',
+                image: 'common/plant/地刺.png',
+                cost: 100,
+                health: 300,
+                damage: 25,
+                range: '1格',
+                recharge: '10秒',
+                special: '地刺',
+                description: '每3秒对上方的僵尸造成25点伤害。可以扎爆一次冰车僵尸的轮胎。'
+            },
+            {
+                id: 'SpikeRocks',
+                name: '地刺王',
+                emoji: '🌱',
+                image: 'common/plant/地刺王.png',
+                cost: 125,
+                health: 300,
+                damage: 50,
+                range: '1格',
+                recharge: '50秒',
+                special: '地刺 · 紫卡',
+                description: '每3秒对上方的僵尸造成50点伤害。可以多次扎爆冰车僵尸的轮胎。紫卡特性：需要种在地刺上。'
+            },
+            {
+                id: 'SeaShroom',
+                name: '海喷菇',
+                emoji: '🌱',
+                image: 'common/plant/海喷菇.png',
+                cost: 0,
+                health: 300,
+                damage: 20,
+                range: '前方3格',
+                recharge: '8秒',
+                special: '免费 · 水生',
+                description: '相当于水上的小喷菇，免费，是前期的好帮手。'
+            },
+            {
+                id: 'MariGold',
+                name: '金盏花',
+                emoji: '🌱',
+                image: 'common/plant/金盏花.png',
+                cost: 50,
+                health: 300,
+                damage: 0,
+                range: '无',
+                recharge: '30秒',
+                special: '生产',
+                description: '每24秒生产一枚钱币，20%为金币，80%为银币。'
+            },
+            {
+                id: 'TangleKelp',
+                name: '缠绕水草',
+                emoji: '🌱',
+                image: 'common/plant/缠绕水草.png',
+                cost: 50,
+                health: 300,
+                damage: 1800,
+                range: '左右两边',
+                recharge: '30秒',
+                special: '水生',
+                description: '将左边或者右边的僵尸拖下水。'
+            },
+            {
+                id: 'TwinSunFlower',
+                name: '双向日葵',
+                emoji: '🌱',
+                image: 'common/plant/双向日葵.png',
+                cost: 150,
+                health: 300,
+                damage: 0,
+                range: '无',
+                recharge: '90秒',
+                special: '生产',
+                description: '每24秒生产50阳光，晚上效率减半，每48秒50阳光。紫卡特性：需要种在向日葵上。'
+            },
+            {
+                id: 'PlantBox',
+                name: '植物盒子',
+                emoji: '🌱',
+                image: 'common/plant/植物盒子.png',
+                cost: 150,
+                health: 300,
+                damage: 0,
+                range: '无',
+                recharge: '5秒',
+                special: '盒子',
+                description: '随机生成一株植物。'
+            },
+            {
+                id: 'RandomBox',
+                name: '随机盒子',
+                emoji: '🌱',
+                image: 'common/plant/随机盒子.png',
+                cost: 25,
+                health: 300,
+                damage: 0,
+                range: '无',
+                recharge: '3秒',
+                special: '盒子',
+                description: '随机生成一株植物或僵尸。在正常关卡中，有70%概率是僵尸，在随机盒子类关卡中，有70%为植物。'
+            },
+            {
+                id: 'PlantCase',
+                name: '植物盒',
+                emoji: '🌱',
+                image: 'common/plant/植物盒.png',
+                cost: 25,
+                health: 300,
+                damage: 0,
+                range: '无',
+                recharge: '20秒',
+                special: '盒子',
+                description: '本盒子只在我是植物模式中存在。随机生成一株特定植物。'
+            },
+            {
+                id: 'gatlingpea',
+                name: '机枪射手',
+                emoji: '🌱',
+                image: 'common/plant/机枪射手.png',
+                cost: 300,
+                health: 300,
+                damage: 20,
+                range: '直线',
+                recharge: '慢',
+                special: '远程 · 紫卡',
+                description: '机枪射手连续发射四颗豌豆，是强大的火力单位。（还未加入重制版）'
+            }, {
+                id: 'cactus',
+                name: '仙人掌',
+                emoji: '🌱',
+                image: 'common/plant/仙人掌.png',
+                cost: 125,
+                health: 300,
+                damage: 20,
+                range: '直线',
+                recharge: '中等',
+                special: '远程',
+                description: '仙人掌的尖刺可以扎破气球僵尸的气球。每3秒发射一颗尖刺，第3.6秒对僵尸造成20点伤害。（还未加入重制版）'
+            }, {
+                id: 'cornpult',
+                name: '玉米投手',
+                emoji: '🌱',
+                image: 'common/plant/玉米投手.png',
+                cost: 100,
+                health: 300,
+                damage: 15,
+                range: '抛物线',
+                recharge: '中等',
+                special: '投掷',
+                description: '玉米投手投掷玉米粒，偶尔扔出黄油使僵尸眩晕。（还未加入重制版）'
+            },
             ],
-            zombies: [{
+            // 僵尸图鉴区域
+            zombies: [
+            {
                 id: 'normal',
                 name: '普通僵尸',
                 emoji: '🌱',
@@ -965,7 +1199,8 @@
                 damage: 100,
                 special: '普通',
                 description: '最基础的僵尸。移动速度是每2.5秒向前移动10个像素，攻击伤害是每秒100点伤害。'
-            }, {
+            }, 
+            {
                 id: 'cone',
                 name: '路障僵尸',
                 emoji: '🌱',
@@ -975,7 +1210,8 @@
                 damage: 100,
                 special: '路障',
                 description: '路障僵尸头上的路障提供额外防御，更耐打。路障提供共计420点第一类防御值，每140点切换破损状态。'
-            }, {
+            }, 
+            {
                 id: 'bucket',
                 name: '铁桶僵尸',
                 emoji: '🌱',
@@ -985,7 +1221,8 @@
                 damage: 100,
                 special: '铁桶',
                 description: '铁桶僵尸防御较高，是前期的棘手敌人。铁桶提供共计1200点第一类防御值，每400点切换破损状态。'
-            }, {
+            }, 
+            {
                 id: 'flag',
                 name: '旗帜僵尸',
                 emoji: '🌱',
@@ -995,7 +1232,8 @@
                 damage: 100,
                 special: '旗帜',
                 description: '每次僵尸来袭都走在最前面的僵尸。与原版不同的是，它相比于普通僵尸更加耐打，且移动速度略微快于普通僵尸。'
-            }, {
+            }, 
+            {
                 id: 'pole',
                 name: '撑杆跳僵尸',
                 emoji: '🌱',
@@ -1005,7 +1243,8 @@
                 damage: 100,
                 special: '跳跃',
                 description: '撑杆跳僵尸可跳过第一个障碍物，突破防线，前期非常棘手。相比于原版，这个版本的撑杆跳僵尸血量更厚，在跳跃前速度更快。跳跃前移动速度为20像素每1秒，跳跃后移动速度为12像素每2.5秒。跳跃可以被高坚果所阻挡。'
-            }, {
+            }, 
+            {
                 id: 'newspaper',
                 name: '报纸僵尸',
                 emoji: '🌱',
@@ -1015,7 +1254,8 @@
                 damage: 100,
                 special: '超速',
                 description: '读报僵尸被攻击后会愤怒，速度大幅提升（10像素每2.5秒 → 20像素每1.5秒）。报纸提供共计180点第二类防御值，每60点切换破损状态。'
-            }, {
+            }, 
+            {
                 id: 'football',
                 name: '橄榄球僵尸',
                 emoji: '🌱',
@@ -1025,7 +1265,8 @@
                 damage: 100,
                 special: '超速 · 防御',
                 description: '橄榄球僵尸速度极快，且防御较高，能迅速突破防线。橄榄头盔提供共计1800点第一类防御值，每600点切换破损状态。'
-            }, {
+            }, 
+            {
                 id: 'dancer',
                 name: '舞王僵尸',
                 emoji: '🌱',
@@ -1035,7 +1276,8 @@
                 damage: 50,
                 special: '技能',
                 description: '舞王僵尸会召唤其他僵尸一起进攻。（还未加入重制版）'
-            }, {
+            }, 
+            {
                 id: 'giant',
                 name: '巨人僵尸',
                 emoji: '🌱',
@@ -1045,7 +1287,8 @@
                 damage: 9999,
                 special: '坦克',
                 description: '巨人僵尸拥有极高的生命值和破坏力，需集中火力攻击。在半血时扔出小鬼僵尸，并变成受伤形态。'
-            },{
+            },
+            {
                 id: 'door',
                 name: '钢门僵尸',
                 emoji: '🌱',
@@ -1055,7 +1298,8 @@
                 damage: 100,
                 special: '钢门',
                 description: '钢门提供共计1200点第二类防御值，每400点切换破损状态，第二类防具免疫寒冰子弹的减速。'
-            },{
+            },
+            {
                 id: 'jackinbox',
                 name: '小丑僵尸',
                 emoji: '🌱',
@@ -1065,7 +1309,8 @@
                 damage: 100,
                 special: '玩具匣',
                 description: '玩具匣每5秒检测一次爆炸，每次有0.1概率引爆，若走到最后一格，则100%引爆。可以使用磁力菇吸取玩具匣。'
-            },{
+            },
+            {
                 id: 'imp',
                 name: '小鬼僵尸',
                 emoji: '🌱',
@@ -1075,7 +1320,8 @@
                 damage: 100,
                 special: '超人',
                 description: '小鬼僵尸一般不会自己上场，而是被巨人僵尸扔出去。'
-            },{
+            },
+            {
                 id: 'duckytube',
                 name: '泳圈僵尸',
                 emoji: '🌱',
@@ -1085,7 +1331,8 @@
                 damage: 100,
                 special: '泳圈',
                 description: '鸭子泳圈提供了浮力，使僵尸能够在水面移动。'
-            },{
+            },
+            {
                 id: 'duckytubeCone',
                 name: '泳圈路障僵尸',
                 emoji: '🌱',
@@ -1095,7 +1342,8 @@
                 damage: 100,
                 special: '泳圈',
                 description: '鸭子泳圈提供了浮力，使僵尸能够在水面移动。路障提供共计420点第一类防御值，每140点切换破损状态。'
-            },{
+            },
+            {
                 id: 'duckytubeBucket',
                 name: '泳圈铁桶僵尸',
                 emoji: '🌱',
@@ -1105,57 +1353,71 @@
                 damage: 100,
                 special: '泳圈',
                 description: '鸭子泳圈提供了浮力，使僵尸能够在水面移动。铁桶提供共计1200点第一类防御值，每400点切换破损状态。'
-            }
+            },
         ],
-            guides: [
-                {
-                    id: 'guide1',
-                    title: '僵尸移动速度计算',
-                    date: '2026-08-10',
-                    content: `
-                        <p>僵尸移动速度单位是px/s，即像素每秒，如10px/2.5s的意思就是每2.5秒，僵尸向前移动10个像素。游戏内一个格子的宽度为55像素。</p>
-                    `,
-                    link: ''
-                },
-		{
-                    id: 'guide2',
-                    title: '如何选择合适版本？',
-                    date: '2026-07-24',
-                    content: `
-                        <p>共计3个版本，分别是正常版、兼容版、重制版，建议看完本帖子再去下面选择各版本的链接</p>
-                        <p><a href="https://www.bandbbs.cn/threads/27576/" target="_blank">点击查看如何选择合适的版本</a></p>
-                    `,
-                    link: 'https://www.bandbbs.cn/threads/27576/'
-                },
-                {
-                    id: 'guide3',
-                    title: '各版本的链接',
-                    date: '2026-03-10',
-                    content: `
-                        <p>这是植物大战僵尸各版本的米坛社区链接：<a href="https://www.bandbbs.cn/resources/7132/" target="_blank">重制版链接</a>、
-				<a href="https://www.bandbbs.cn/resources/5969/" target="_blank">米环9兼容版链接</a>、
-				<a href="https://www.bandbbs.cn/resources/5701/" target="_blank">米环9pro兼容版链接</a>、
-				<a href="https://www.bandbbs.cn/resources/5629/" target="_blank">正常版链接</a></p>
-                    `,
-                    link: ''
-                },
-		{
-                    id: 'guide4',
-                    title: '赞助作者',
-                    date: '2026-03-17',
-                    content: `
-                        <p>游戏制作不易，觉得好玩可以赞助一下作者😍</p>
-                        <p><a href="https://ifdian.net/a/HazeNoTea" target="_blank">爱发电链接</a>`,
-                    link: ''
-                },
-        {
-            id: 'guide5',
-            title: '游戏QQ群聊',
-            date: '2026-05-10',
-            content: `
-                <p>0号群:1060211457（经常满）</p>
-                <p>1号群:1101713503</p>`,
+        // 咨询帖子区域
+        guides: 
+        [
+            {
+                id: 'guide1',
+                title: '僵尸移动速度计算',
+                date: '2026-08-10',
+                content: `
+                    <p>僵尸移动速度单位是px/s，即像素每秒，如10px/2.5s的意思就是每2.5秒，僵尸向前移动10个像素。游戏内一个格子的宽度为55像素。</p>
+                `,
                 link: ''
+            },
+		    {
+                id: 'guide2',
+                title: '如何选择合适版本？',
+                date: '2026-07-24',
+                content: `
+                    <p>共计3个版本，分别是正常版、兼容版、重制版，建议看完本帖子再去下面选择各版本的链接</p>
+                    <p><a href="https://www.bandbbs.cn/threads/27576/" target="_blank">点击查看如何选择合适的版本</a></p>
+                `,
+                link: 'https://www.bandbbs.cn/threads/27576/'
+            },
+            {
+                id: 'guide3',
+                title: '各版本的链接',
+                date: '2026-03-10',
+                content: `
+                    <p>这是植物大战僵尸各版本的米坛社区链接：<a href="https://www.bandbbs.cn/resources/7132/" target="_blank">重制版链接</a>、
+				    <a href="https://www.bandbbs.cn/resources/5969/" target="_blank">米环9兼容版链接</a>、
+				    <a href="https://www.bandbbs.cn/resources/5701/" target="_blank">米环9pro兼容版链接</a>、
+				    <a href="https://www.bandbbs.cn/resources/5629/" target="_blank">正常版链接</a></p>
+                `,
+                link: ''
+            },
+		    {
+                id: 'guide4',
+                title: '赞助作者',
+                date: '2026-03-17',
+                content: `
+                    <p>游戏制作不易，觉得好玩可以赞助一下作者😍</p>
+                    <p><a href="https://ifdian.net/a/HazeNoTea" target="_blank">爱发电链接</a>`,
+                link: ''
+            },
+            {
+                id: 'guide5',
+                title: '游戏QQ群聊',
+                date: '2026-05-10',
+                content: `
+                    <p>0号群:1060211457（经常满）</p>
+                    <p>1号群:1101713503</p>
+                    <p>进群答案：表盘自定义工具、AstroBox、米坛社区、爱发电（任选一个，意思相近即可）</p>
+                `,
+                link: ''
+            },
+            {
+                id: 'guide6',
+                title: '僵尸生成配置工具',
+                date: '2026-07-10',
+                content: `
+                    <p>作者自用的关卡僵尸生成配置工具</p>
+                    <p>作者制作关卡用的，一般人没什么用</p>
+                `,
+                link: 'tools/僵尸配置器.html'
             },
         ]
         };

@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>HNT植物大战僵尸：僵尸生成配置工具</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #0c1518;
+            font-family: 'Inter', 'Segoe UI', 'Roboto', system-ui, -apple-system, 'Microsoft YaHei', sans-serif;
+            padding: 28px 24px;
+            color: #e2e8f0;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* 全新深色主题卡片 */
+        .card {
+            background: rgba(18, 28, 26, 0.92);
+            backdrop-filter: blur(4px);
+            border-radius: 28px;
+            box-shadow: 0 20px 38px -12px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(120, 200, 140, 0.2);
+            padding: 1.6rem 1.8rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(46, 125, 80, 0.5);
+            transition: all 0.2s;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 1.4rem;
+            border-left: 5px solid #4cd964;
+            padding-left: 1.2rem;
+        }
+
+        h2, h3 {
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #C0FFB0, #7EE0A0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: #b9f6ca;
+        }
+
+        /* 表单控件风格 */
+        textarea, input, select, button {
+            font-family: inherit;
+            font-size: 0.9rem;
+            border-radius: 1.2rem;
+            border: none;
+            background: #1e2a28;
+            color: #eef4ff;
+            padding: 0.6rem 1rem;
+            transition: all 0.15s;
+        }
+
+        textarea {
+            background: #0f1c1a;
+            border: 1px solid #2c5e4a;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            resize: vertical;
+        }
+
+        button {
+            background: linear-gradient(95deg, #2b7a4b, #1f5e3a);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 3px 0 #0e3a24;
+            transition: 0.07s linear;
+            padding: 0.6rem 1.4rem;
+            border-radius: 2rem;
+            border: none;
+        }
+
+        button:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 #0e3a24;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(95deg, #3a5a4e, #2c4a3e);
+            box-shadow: 0 3px 0 #1a352a;
+            color: #e2f0e8;
+        }
+
+        .btn-danger {
+            background: linear-gradient(95deg, #a1452c, #832b1a);
+            box-shadow: 0 3px 0 #521a0c;
+        }
+
+        .badge {
+            background: #1e332c;
+            padding: 0.25rem 0.9rem;
+            border-radius: 3rem;
+            font-size: 0.75rem;
+            color: #c0f0d0;
+        }
+
+        /* 表格区域 */
+        .config-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #0e1e1a;
+            border-radius: 1.8rem;
+            overflow: hidden;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+        }
+
+        .config-table th,
+        .config-table td {
+            padding: 14px 8px;
+            border-bottom: 1px solid #2a4a3c;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .config-table th {
+            background: #15382e;
+            font-weight: 600;
+            color: #d2f0dc;
+            font-size: 0.85rem;
+        }
+
+        /* 多选 select 优化样式 */
+        .multi-select {
+            background: #111e1c;
+            border: 1px solid #2e7a5e;
+            border-radius: 1rem;
+            padding: 6px;
+            width: 250px;
+            min-width: 170px;
+            height: 150px;
+            color: #e2edf0;
+            font-size: 0.8rem;
+        }
+
+        .multi-select option {
+            padding: 6px 8px;
+            border-radius: 12px;
+            background: #1b2f2a;
+            margin: 2px 0;
+            transition: 0.05s linear;
+        }
+
+        .multi-select option:checked {
+            background: #2b8c5e linear-gradient(0deg, #2b8c5e, #2b8c5e);
+            color: white;
+            font-weight: 500;
+        }
+
+        .maxscore-input {
+            width: 85px;
+            text-align: center;
+            background: #1a2e28;
+            border: 1px solid #3b7b62;
+        }
+
+        .random-count-input {
+            width: 70px;
+            text-align: center;
+            background: #1a2e28;
+        }
+
+        .btn-icon {
+            background: #2b5242;
+            padding: 5px 14px;
+            font-size: 0.75rem;
+            box-shadow: 0 2px 0 #153528;
+        }
+
+        .zombie-tag {
+            background: #1e5a46;
+            border-radius: 32px;
+            padding: 4px 14px;
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin: 3px 5px;
+            box-shadow: inset 0 0 0 1px #66bb88;
+        }
+
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .status-msg {
+            font-size: 0.8rem;
+            color: #a2e0bc;
+            background: #142d24;
+            padding: 4px 12px;
+            border-radius: 24px;
+        }
+
+        .copy-output {
+            background: #0a1815;
+            font-family: 'JetBrains Mono', monospace;
+            white-space: pre-wrap;
+            border: 1px solid #2e7a5e;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.7rem;
+            opacity: 0.6;
+            margin-top: 1rem;
+        }
+
+        /* 提示小标记 */
+        .helper-note {
+            font-size: 0.7rem;
+            color: #7bc69a;
+            margin-top: 6px;
+        }
+
+        @media (max-width: 1000px) {
+            .config-table th, .config-table td { font-size: 0.7rem; padding: 10px 4px; }
+            .multi-select { width: 150px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 僵尸注册表导入区 -->
+    <div class="card">
+        <div class="card-header">
+            <h2>🧟 僵尸注册表 · 智能提取</h2>
+            <span class="badge">⚡ 单击多选 | 自动互斥</span>
+        </div>
+        <div style="margin-bottom: 12px;">
+            <label style="font-weight:500; color:#b9f0d0;">📦 粘贴 zombiesRegistry.js 内容</label>
+            <textarea id="registryInput" rows="6" placeholder='export const zombieRegistry = {
+    "普通僵尸": () => import("./zombies/commonZombie.js"),
+    "路障僵尸": () => import("./zombies/coneheadZombie.js"),
+    ... 
+};' style="height:150px; width:100%; margin-top:12px;"></textarea>
+            <div class="flex-between" style="margin-top: 14px;">
+                <button id="parseRegistryBtn">🌿 解析 & 提取僵尸</button>
+                <button id="loadExampleBtn" class="btn-secondary">📋 加载示例注册表</button>
+                <span id="parseStatus" class="status-msg">⚡ 等待解析</span>
+            </div>
+        </div>
+        <div>
+            <span style="font-weight: bold; color:#c0f0d0;">✅ 僵尸图鉴：</span>
+            <span id="zombieTypeListDisplay" style="word-break: break-word;">—</span>
+        </div>
+    </div>
+
+    <!-- 导入已有配置区 -->
+    <div class="card">
+        <div class="card-header">
+            <h3>📥 导入已有配置</h3>
+            <button id="importConfigBtn" style="background: #3d6b58;">⬇️ 加载并覆盖配置</button>
+        </div>
+        <div>
+            <textarea id="importConfigArea" rows="4" placeholder='粘贴已有的 zombieConfigs 数组，例如：
+[
+  { "maxScore": 5, "fixed": ["普通僵尸"], "randomPool": ["撑杆跳僵尸"], "randomCount": 1 }
+]' style="height:150px; width:100%;"></textarea>
+            <div class="helper-note">💡 导入后自动过滤无效僵尸，随机池自动排除固定项。</div>
+        </div>
+    </div>
+
+    <!-- 分数段配置编辑器 -->
+    <div class="card">
+        <div class="card-header">
+            <h3>⚙️ 僵尸生成表 (分数段规则)</h3>
+            <button id="addSegmentBtn" style="background:#3d8f60;">➕ 添加分数段</button>
+        </div>
+        <div style="overflow-x: auto;">
+            <table class="config-table">
+                <thead>
+                    <tr>
+                        <th>maxScore<br><span style="font-size:0.7rem;">(默认段留空)</span></th>
+                        <th>📌 固定生成 (fixed)<br><span style="font-size:0.7rem;">单击即选/取消</span></th>
+                        <th>🎲 随机池 (randomPool)<br><span style="font-size:0.7rem;">自动排除固定僵尸</span></th>
+                        <th>🎯 randomCount</th>
+                        <th>🌟 默认段</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="configRowsContainer"></tbody>
+            </table>
+        </div>
+        <div class="flex-between" style="margin-top: 1.2rem;">
+            <div>
+                <button id="sortSegmentsBtn" class="btn-secondary">🔄 按分数排序 & 整理默认段</button>
+                <span style="margin-left: 12px; font-size:0.75rem;">✨ 随机池自动避开固定项</span>
+            </div>
+            <button id="resetDefaultConfigBtn" class="btn-secondary">♻️ 重置示例配置</button>
+        </div>
+    </div>
+
+    <!-- 输出配置代码区 -->
+    <div class="card">
+        <div class="card-header">
+            <h3>📤 输出配置 (zombieConfigs)</h3>
+            <button id="copyOutputBtn" style="background:#2d6e55;">📋 复制代码</button>
+        </div>
+        <textarea id="outputConfigArea" rows="8" class="copy-output" readonly placeholder="配置生成后将显示JS数组..." style="height:150px; width:100%;"></textarea>
+        <div class="helper-note">✨ 基于当前表格配置动态生成，单击多选无需Ctrl，体验顺滑。</div>
+    </div>
+    <footer>🎮 图形化配置 · 深色重构 | 单击切换多选 + 固定/随机互斥</footer>
+</div>
+
+<script>
+    // ---------- 全局状态 ----------
+    let availableZombies = [];       // 僵尸名称列表
+    let configSegments = [];         // 配置段
+
+    // DOM 元素
+    const registryInput = document.getElementById('registryInput');
+    const parseRegistryBtn = document.getElementById('parseRegistryBtn');
+    const loadExampleBtn = document.getElementById('loadExampleBtn');
+    const parseStatus = document.getElementById('parseStatus');
+    const zombieTypeListDisplay = document.getElementById('zombieTypeListDisplay');
+    const configRowsContainer = document.getElementById('configRowsContainer');
+    const addSegmentBtn = document.getElementById('addSegmentBtn');
+    const sortSegmentsBtn = document.getElementById('sortSegmentsBtn');
+    const resetDefaultConfigBtn = document.getElementById('resetDefaultConfigBtn');
+    const copyOutputBtn = document.getElementById('copyOutputBtn');
+    const outputConfigArea = document.getElementById('outputConfigArea');
+    const importConfigBtn = document.getElementById('importConfigBtn');
+    const importConfigArea = document.getElementById('importConfigArea');
+
+    // ---------- 辅助函数 ----------
+    function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    // 提取注册表僵尸名称
+    function extractZombieKeysFromRegistry(registryText) {
+        const regexSingle = /'([^']+)'\s*:/g;
+        const regexDouble = /"([^"]+)"\s*:/g;
+        const keys = new Set();
+        let match;
+        while ((match = regexSingle.exec(registryText)) !== null) keys.add(match[1]);
+        while ((match = regexDouble.exec(registryText)) !== null) keys.add(match[1]);
+        if (keys.size === 0) {
+            const fallbackRegex = /([a-zA-Z\u4e00-\u9fa5]+)\s*:\s*\(\)\s*=>/g;
+            while ((match = fallbackRegex.exec(registryText)) !== null) {
+                if (match[1] && !match[1].startsWith('//')) keys.add(match[1]);
+            }
+        }
+        return Array.from(keys);
+    }
+
+    // 确保只有一个默认段，且默认段 maxScore = null
+    function ensureSingleDefaultSegment() {
+        const defaultSegments = configSegments.filter(s => s.isDefault === true);
+        if (defaultSegments.length === 0 && configSegments.length > 0) {
+            configSegments[configSegments.length - 1].isDefault = true;
+            configSegments[configSegments.length - 1].maxScore = null;
+        } else if (defaultSegments.length > 1) {
+            let first = true;
+            for (let seg of configSegments) {
+                if (seg.isDefault) {
+                    if (!first) seg.isDefault = false;
+                    else first = false;
+                }
+            }
+        }
+        configSegments.forEach(seg => {
+            if (seg.isDefault) seg.maxScore = null;
+        });
+    }
+
+    // 清洗配置段：过滤无效僵尸 + 随机池排除固定项
+    function sanitizeSegments() {
+        if (!availableZombies.length) return;
+        configSegments = configSegments.map(seg => {
+            let fixed = seg.fixed.filter(z => availableZombies.includes(z));
+            let randomPool = seg.randomPool.filter(z => availableZombies.includes(z));
+            // 核心互斥：随机池中不能出现 fixed 中的僵尸
+            randomPool = randomPool.filter(z => !fixed.includes(z));
+            return { ...seg, fixed, randomPool, randomCount: (seg.randomCount !== undefined ? seg.randomCount : 1) };
+        }).filter(seg => seg.fixed.length > 0 || seg.randomPool.length > 0 || seg.isDefault);
+        
+        if (configSegments.length === 0 && availableZombies.length) {
+            configSegments = [{
+                maxScore: null,
+                fixed: availableZombies.slice(0, 1),
+                randomPool: availableZombies.slice(1, 3).filter(z => z !== availableZombies[0]),
+                randomCount: 1,
+                isDefault: true
+            }];
+        }
+        ensureSingleDefaultSegment();
+    }
+
+    // 解析注册表并更新
+    function parseRegistryAndUpdate() {
+        const raw = registryInput.value;
+        if (!raw.trim()) {
+            parseStatus.innerHTML = '⚠️ 请粘贴僵尸注册表内容';
+            return false;
+        }
+        const extracted = extractZombieKeysFromRegistry(raw);
+        if (extracted.length === 0) {
+            parseStatus.innerHTML = '❌ 未提取到僵尸类型，请检查格式 (需要 "僵尸名": () => import(...))';
+            return false;
+        }
+        availableZombies = extracted;
+        zombieTypeListDisplay.innerHTML = availableZombies.map(z => `<span class="zombie-tag">🧟 ${escapeHtml(z)}</span>`).join(' ');
+        parseStatus.innerHTML = `✅ 解析成功，共 ${availableZombies.length} 种僵尸。`;
+        
+        if (configSegments.length === 0) {
+            loadDefaultConfigPreset();
+        } else {
+            sanitizeSegments();
+            renderConfigTable();
+        }
+        updateOutputCode();
+        return true;
+    }
+
+    // 加载默认示例配置 (带互斥)
+    function loadDefaultConfigPreset() {
+        if (availableZombies.length === 0) {
+            configSegments = [];
+            renderConfigTable();
+            updateOutputCode();
+            return;
+        }
+        const exampleRaw = [
+            { maxScore: 5, fixed: ['普通僵尸'], randomPool: ['撑杆跳僵尸','报纸僵尸'], randomCount: 1, isDefault: false },
+            { maxScore: 10, fixed: ['普通僵尸','路障僵尸'], randomPool: ['撑杆跳僵尸','报纸僵尸','钢门僵尸','橄榄球僵尸'], randomCount: 2, isDefault: false },
+            { maxScore: 15, fixed: ['路障僵尸','铁桶僵尸'], randomPool: ['撑杆跳僵尸','报纸僵尸','钢门僵尸','小丑僵尸','橄榄球僵尸'], randomCount: 2, isDefault: false },
+            { maxScore: null, fixed: ['铁桶僵尸','橄榄球僵尸'], randomPool: ['撑杆跳僵尸','小丑僵尸','报纸僵尸'], randomCount: 2, isDefault: true }
+        ];
+        const filtered = exampleRaw.map(seg => ({
+            maxScore: seg.maxScore,
+            fixed: seg.fixed.filter(z => availableZombies.includes(z)),
+            randomPool: seg.randomPool.filter(z => availableZombies.includes(z) && !seg.fixed.includes(z)),
+            randomCount: seg.randomCount,
+            isDefault: seg.isDefault
+        })).filter(seg => seg.fixed.length > 0 || seg.randomPool.length > 0 || seg.isDefault);
+        if (filtered.length === 0) {
+            configSegments = [{ maxScore: null, fixed: [availableZombies[0]], randomPool: availableZombies.slice(1,3), randomCount: 1, isDefault: true }];
+        } else {
+            configSegments = filtered;
+        }
+        ensureSingleDefaultSegment();
+        renderConfigTable();
+        updateOutputCode();
+    }
+
+    // 导入已有配置
+    function importConfigFromText() {
+        if (availableZombies.length === 0) {
+            alert('请先解析僵尸注册表，建立僵尸库');
+            return;
+        }
+        let raw = importConfigArea.value.trim();
+        if (!raw) { alert('请粘贴配置数组'); return; }
+        let cleaned = raw.replace(/^export\s+default\s+/, '').replace(/^const\s+zombieConfigs\s*=\s*/, '').replace(/;$/, '');
+        try {
+            let parsed = eval('(' + cleaned + ')');
+            if (!Array.isArray(parsed)) throw new Error('不是有效数组');
+            const newSegments = [];
+            for (let item of parsed) {
+                let fixed = item.fixed || [];
+                let randomPool = item.randomPool || [];
+                let randomCount = (item.randomCount !== undefined && !isNaN(item.randomCount)) ? item.randomCount : 1;
+                let maxScore = (item.maxScore !== undefined && item.maxScore !== null && !isNaN(item.maxScore)) ? item.maxScore : null;
+                let isDefault = (maxScore === null && !item.maxScore && item.maxScore !== 0);
+                fixed = fixed.filter(z => availableZombies.includes(z));
+                randomPool = randomPool.filter(z => availableZombies.includes(z) && !fixed.includes(z));
+                newSegments.push({ maxScore, fixed, randomPool, randomCount, isDefault });
+            }
+            if (newSegments.length === 0) throw new Error('无有效配置段');
+            configSegments = newSegments;
+            let hasDefault = configSegments.some(s => s.isDefault);
+            if (!hasDefault && configSegments.length) {
+                configSegments[configSegments.length-1].isDefault = true;
+                configSegments[configSegments.length-1].maxScore = null;
+            }
+            // 再次确保随机池排除固定
+            configSegments = configSegments.map(seg => ({
+                ...seg,
+                randomPool: seg.randomPool.filter(z => !seg.fixed.includes(z))
+            }));
+            ensureSingleDefaultSegment();
+            renderConfigTable();
+            updateOutputCode();
+            alert(`导入成功，共 ${configSegments.length} 个配置段`);
+        } catch(e) {
+            alert('解析失败，请检查数组格式：' + e.message);
+        }
+    }
+
+    // 增强 select multiple: 点击option即切换选中（无需Ctrl）
+    function enhanceSelectToClickToggle(selectEl) {
+        if (!selectEl || selectEl.getAttribute('data-enhanced') === 'true') return;
+        selectEl.setAttribute('data-enhanced', 'true');
+        selectEl.addEventListener('mousedown', function(e) {
+            const option = e.target;
+            if (option.tagName !== 'OPTION') return;
+            e.preventDefault();  // 阻止原生行为（避免按Ctrl或默认）
+            option.selected = !option.selected;
+            // 触发 change 事件，让外部监听器同步数据
+            const changeEvent = new Event('change', { bubbles: true });
+            selectEl.dispatchEvent(changeEvent);
+        });
+    }
+
+    // 渲染表格，并应用单击多选增强
+    function renderConfigTable() {
+        if (!configRowsContainer) return;
+        if (availableZombies.length === 0) {
+            configRowsContainer.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:2rem;">🧟 请先解析僵尸注册表</td></tr>`;
+            return;
+        }
+        if (configSegments.length === 0) {
+            configRowsContainer.innerHTML = `<tr><td colspan="6" style="text-align:center;">暂无配置，请点击“添加分数段”</td></tr>`;
+            return;
+        }
+
+        let html = '';
+        configSegments.forEach((seg, idx) => {
+            const isDef = seg.isDefault === true;
+            const maxScoreVal = (seg.maxScore !== null && !isDef) ? seg.maxScore : '';
+            const randomCountVal = seg.randomCount ?? 1;
+
+            // 固定选项框
+            const fixedOptions = availableZombies.map(z => `<option value="${escapeHtml(z)}" ${seg.fixed.includes(z) ? 'selected' : ''}>${escapeHtml(z)}</option>`).join('');
+            // 随机池选项：禁用固定项（视觉上disable+文本提示），但为了保证互斥，会在change时过滤，另外禁用后用户无法选中已被固定的僵尸
+            const randomOptions = availableZombies.map(z => {
+                const isDisabled = seg.fixed.includes(z);
+                const selectedAttr = seg.randomPool.includes(z) ? 'selected' : '';
+                const disabledAttr = isDisabled ? 'disabled' : '';
+                return `<option value="${escapeHtml(z)}" ${selectedAttr} ${disabledAttr} style="${isDisabled ? 'color:#779f8a; background:#1e2e28;' : ''}">${escapeHtml(z)} ${isDisabled ? '🚫已固定' : ''}</option>`;
+            }).join('');
+
+            html += `<tr data-seg-index="${idx}">
+                <td><input type="number" class="maxscore-input" value="${maxScoreVal}" placeholder="分数" ${isDef ? 'disabled style="background:#1f3a30;"' : ''}></td>
+                <td><select multiple class="multi-select fixed-select" size="5">${fixedOptions}</select></td>
+                <td><select multiple class="multi-select random-select" size="5">${randomOptions}</select></td>
+                <td><input type="number" class="random-count-input" value="${randomCountVal}" min="0" step="1"></td>
+                <td><input type="checkbox" class="default-checkbox" ${isDef ? 'checked' : ''} ${configSegments.filter(s=>s.isDefault).length>=1 && !isDef ? 'disabled' : ''}></td>
+                <td><button class="btn-icon delete-row">🗑️ 删除</button></td>
+            </tr>`;
+        });
+        configRowsContainer.innerHTML = html;
+
+        // 绑定事件 + 增强多选
+        const rows = document.querySelectorAll('#configRowsContainer tr');
+        rows.forEach(row => {
+            const idx = parseInt(row.getAttribute('data-seg-index'));
+            if (isNaN(idx)) return;
+            const maxScoreInput = row.querySelector('.maxscore-input');
+            const fixedSelect = row.querySelector('.fixed-select');
+            const randomSelect = row.querySelector('.random-select');
+            const randomCountInput = row.querySelector('.random-count-input');
+            const defaultCheckbox = row.querySelector('.default-checkbox');
+            const deleteBtn = row.querySelector('.delete-row');
+
+            // 增强多选（单击切换）
+            if (fixedSelect) enhanceSelectToClickToggle(fixedSelect);
+            if (randomSelect) enhanceSelectToClickToggle(randomSelect);
+
+            // 分数变更
+            if (maxScoreInput) {
+                maxScoreInput.addEventListener('change', (e) => {
+                    let val = e.target.value.trim();
+                    if (val === '') configSegments[idx].maxScore = null;
+                    else configSegments[idx].maxScore = parseInt(val);
+                    if (configSegments[idx].isDefault) configSegments[idx].maxScore = null;
+                    ensureSingleDefaultSegment();
+                    renderConfigTable(); // 刷新保持互斥展示
+                    updateOutputCode();
+                });
+            }
+
+            // 固定列表变更：更新模型并重新渲染随机池（清除已固定）
+            if (fixedSelect) {
+                fixedSelect.addEventListener('change', () => {
+                    const selected = Array.from(fixedSelect.selectedOptions).map(opt => opt.value);
+                    configSegments[idx].fixed = selected;
+                    // 强制从 randomPool 中移除所有固定项
+                    configSegments[idx].randomPool = configSegments[idx].randomPool.filter(z => !configSegments[idx].fixed.includes(z));
+                    renderConfigTable();  // 重绘以实现禁用随机池相应项
+                    updateOutputCode();
+                });
+            }
+
+            // 随机池变更
+            if (randomSelect) {
+                randomSelect.addEventListener('change', () => {
+                    let selected = Array.from(randomSelect.selectedOptions).map(opt => opt.value);
+                    // 安全过滤：防止固定僵尸混入
+                    selected = selected.filter(z => !configSegments[idx].fixed.includes(z));
+                    configSegments[idx].randomPool = selected;
+                    updateOutputCode();
+                });
+            }
+
+            if (randomCountInput) {
+                randomCountInput.addEventListener('change', (e) => {
+                    let val = parseInt(e.target.value);
+                    if (isNaN(val)) val = 0;
+                    configSegments[idx].randomCount = Math.max(0, val);
+                    updateOutputCode();
+                });
+            }
+
+            if (defaultCheckbox) {
+                defaultCheckbox.addEventListener('change', (e) => {
+                    const isChecked = e.target.checked;
+                    if (isChecked) {
+                        configSegments.forEach(seg => seg.isDefault = false);
+                        configSegments[idx].isDefault = true;
+                        configSegments[idx].maxScore = null;
+                    } else {
+                        if (configSegments[idx].isDefault) {
+                            configSegments[idx].isDefault = false;
+                            if (!configSegments.some(s => s.isDefault) && configSegments.length) {
+                                configSegments[configSegments.length-1].isDefault = true;
+                                configSegments[configSegments.length-1].maxScore = null;
+                            }
+                        }
+                    }
+                    ensureSingleDefaultSegment();
+                    renderConfigTable();
+                    updateOutputCode();
+                });
+            }
+
+            if (deleteBtn) {
+                deleteBtn.addEventListener('click', () => {
+                    configSegments.splice(idx, 1);
+                    if (configSegments.length === 0) {
+                        if (availableZombies.length) addEmptyDefaultSegment();
+                        else configSegments = [];
+                    } else ensureSingleDefaultSegment();
+                    renderConfigTable();
+                    updateOutputCode();
+                });
+            }
+        });
+    }
+
+    function addEmptyDefaultSegment() {
+        if (availableZombies.length === 0) return;
+        const sampleFixed = availableZombies.slice(0, 1);
+        const randomCandidates = availableZombies.filter(z => !sampleFixed.includes(z)).slice(0, 2);
+        configSegments.push({
+            maxScore: null,
+            fixed: sampleFixed,
+            randomPool: randomCandidates,
+            randomCount: 1,
+            isDefault: true
+        });
+        ensureSingleDefaultSegment();
+        renderConfigTable();
+        updateOutputCode();
+    }
+
+    function sortAndArrangeSegments() {
+        if (!configSegments.length) return;
+        const defaultSeg = configSegments.filter(s => s.isDefault === true);
+        let normalSegs = configSegments.filter(s => !s.isDefault);
+        normalSegs.forEach(seg => { if (seg.maxScore === null) seg.maxScore = 0; });
+        normalSegs.sort((a,b) => (a.maxScore || 0) - (b.maxScore || 0));
+        let finalDefault = defaultSeg.length ? defaultSeg[0] : null;
+        if (!finalDefault && normalSegs.length) {
+            finalDefault = { ...normalSegs.pop(), isDefault: true, maxScore: null };
+        } else if (finalDefault) {
+            finalDefault.maxScore = null;
+            finalDefault.isDefault = true;
+        }
+        const newSegments = [...normalSegs];
+        if (finalDefault) newSegments.push(finalDefault);
+        configSegments = newSegments;
+        ensureSingleDefaultSegment();
+        renderConfigTable();
+        updateOutputCode();
+    }
+
+    function generateConfigCode() {
+        if (!availableZombies.length) return "// 请先解析注册表获得僵尸类型";
+        const out = [];
+        for (let seg of configSegments) {
+            const obj = {};
+            if (!seg.isDefault && seg.maxScore !== null && !isNaN(seg.maxScore)) obj.maxScore = seg.maxScore;
+            obj.fixed = [...seg.fixed];
+            obj.randomPool = [...seg.randomPool];
+            obj.randomCount = seg.randomCount;
+            out.push(obj);
+        }
+        return `const zombieConfigs = ${JSON.stringify(out, null, 2)};`;
+    }
+
+    function updateOutputCode() {
+        outputConfigArea.value = generateConfigCode();
+    }
+
+    function copyOutputCode() {
+        if (!outputConfigArea.value.trim()) { alert('无配置内容'); return; }
+        outputConfigArea.select();
+        document.execCommand('copy');
+        alert('✅ 配置已复制');
+    }
+
+    function resetToExample() {
+        if (availableZombies.length === 0) { alert('请先解析僵尸注册表'); return; }
+        loadDefaultConfigPreset();
+    }
+
+    function setExampleRegistry() {
+        registryInput.value = `export const zombieRegistry = {
+    '普通僵尸': () => import('./zombies/commonZombie.js'),
+    '路障僵尸': () => import('./zombies/coneheadZombie.js'),
+    '铁桶僵尸': () => import('./zombies/bucketZombie.js'),
+    '撑杆跳僵尸': () => import('./zombies/poleVaultingZombie.js'),
+    '旗帜僵尸': () => import('./zombies/flagZombie.js'),
+    '橄榄球僵尸': () => import('./zombies/footBallZombie.js'),
+    '报纸僵尸': () => import('./zombies/paperZombie.js'),
+    '铁桶报纸僵尸': () => import('./zombies/bucketPaperZombie.js'),
+    '钢门僵尸': () => import('./zombies/doorZombie.js'),
+    '小鬼僵尸': () => import('./zombies/impZombie.js'),
+    '巨人僵尸': () => import('./zombies/gargantuarZombie.js'),
+    '铁桶钢门僵尸': () => import('./zombies/bucketDoorZombie.js'),
+    '小丑僵尸': () => import('./zombies/jackInBoxZombie.js'),
+};`;
+        parseRegistryAndUpdate();
+    }
+
+    // 事件绑定
+    parseRegistryBtn.addEventListener('click', parseRegistryAndUpdate);
+    loadExampleBtn.addEventListener('click', setExampleRegistry);
+    importConfigBtn.addEventListener('click', importConfigFromText);
+    addSegmentBtn.addEventListener('click', () => {
+        if (availableZombies.length === 0) { alert('请先解析僵尸注册表'); return; }
+        const newFixed = availableZombies.slice(0, 1);
+        const newRandom = availableZombies.filter(z => !newFixed.includes(z)).slice(0, 2);
+        configSegments.push({ maxScore: null, fixed: newFixed, randomPool: newRandom, randomCount: 1, isDefault: false });
+        ensureSingleDefaultSegment();
+        renderConfigTable();
+        updateOutputCode();
+    });
+    sortSegmentsBtn.addEventListener('click', sortAndArrangeSegments);
+    resetDefaultConfigBtn.addEventListener('click', resetToExample);
+    copyOutputBtn.addEventListener('click', copyOutputCode);
+    
+    // 启动示例
+    setExampleRegistry();
+</script>
+</body>
+</html>
