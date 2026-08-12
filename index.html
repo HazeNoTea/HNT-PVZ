@@ -1150,18 +1150,45 @@
                 description: '本盒子只在我是植物模式中存在。随机生成一株特定植物。'
             },
             {
-                id: 'gatlingpea',
+                id: 'GatlingPea',
                 name: '机枪射手',
                 emoji: '🌱',
                 image: 'common/plant/机枪射手.png',
-                cost: 300,
+                cost: 250,
                 health: 300,
                 damage: 20,
                 range: '直线',
-                recharge: '慢',
+                recharge: '50秒',
                 special: '远程 · 紫卡',
-                description: '机枪射手连续发射四颗豌豆，是强大的火力单位。（还未加入重制版）'
-            }, {
+                description: '机枪射手连续发射四颗豌豆，是强大的火力单位。每3秒发射4颗豌豆，在第3.6秒造成80点伤害。'
+            },
+            {
+                id: 'TorchWood',
+                name: '火炬树桩',
+                emoji: '🌱',
+                image: 'common/plant/火炬树桩.png',
+                cost: 125,
+                health: 300,
+                damage: 0,
+                range: '后方',
+                recharge: '8秒',
+                special: '辅助',
+                description: '点燃后方豌豆类植物的豌豆，使其每颗豌豆的伤害翻倍。'
+            }, 
+            {
+                id: 'Garlic',
+                name: '大蒜',
+                emoji: '🌱',
+                image: 'common/plant/大蒜.png',
+                cost: 50,
+                health: 600,
+                damage: 0,
+                range: '无',
+                recharge: '8秒',
+                special: '换行',
+                description: '大蒜的味道非常刺激，僵尸都受不了它。使吃到它的僵尸换行。每掉200血量切换一次破损状态。'
+            }, 
+            {
                 id: 'cactus',
                 name: '仙人掌',
                 emoji: '🌱',
@@ -1418,6 +1445,16 @@
                     <p>作者制作关卡用的，一般人没什么用</p>
                 `,
                 link: 'tools/僵尸配置器.html'
+            },
+            {
+                id: 'guide7',
+                title: '免责声明',
+                date: '2026-03-10',
+                content: `
+                    <p>本游戏的版权声明...</p>
+                    <p>点击阅读原文查看</p>
+                `,
+                link: 'post/免责声明.html'
             },
         ]
         };
