@@ -1150,6 +1150,19 @@
                 description: '本盒子只在我是植物模式中存在。随机生成一株特定植物。'
             },
             {
+                id: 'GoodPlantBox',
+                name: '极品盒子',
+                emoji: '🌱',
+                image: 'common/plant/极品盒子.png',
+                cost: 500,
+                health: 300,
+                damage: 0,
+                range: '无',
+                recharge: '60秒',
+                special: '盒子',
+                description: '只会生成紫卡植物，使用此盒子可以在草地上种出猫尾草。（同样可以在一些不能种植的地方种出植物，如在花盆上种出地刺王）'
+            },
+            {
                 id: 'GatlingPea',
                 name: '机枪射手',
                 emoji: '🌱',
@@ -1201,7 +1214,72 @@
                 special: '远程',
                 description: '仙人掌的尖刺可以扎破气球僵尸的气球。每3秒发射一颗尖刺，第3.6秒对僵尸造成20点伤害。（还未加入重制版）'
             }, {
-                id: 'cornpult',
+                id: 'catTail',
+                name: '猫尾草',
+                emoji: '🌱',
+                image: 'common/plant/猫尾草.png',
+                cost: 225,
+                health: 300,
+                damage: 20,
+                range: '全屏追踪',
+                recharge: '50秒',
+                special: '紫卡 · 全屏',
+                description: '每3秒发射一颗追踪子弹，在第3.6秒对离家最近的僵尸造成20点伤害。'
+            },
+            {
+                id: 'ThreePeaShooter',
+                name: '三线射手',
+                emoji: '🌱',
+                image: 'common/plant/三线射手.png',
+                cost: 325,
+                health: 300,
+                damage: 20,
+                range: '三行',
+                recharge: '8秒',
+                special: '三线',
+                description: '三行内有僵尸时，每3秒发射一颗子弹，在第3.6秒对僵尸造成20点伤害。'
+            },
+            {
+                id: 'Plantern',
+                name: '路灯花',
+                emoji: '🌱',
+                image: 'common/plant/路灯花.png',
+                cost: 25,
+                health: 300,
+                damage: 0,
+                range: '无',
+                recharge: '8秒',
+                special: '照明',
+                description: '在迷雾关卡中为你照亮迷雾区域。'
+            },
+            {
+                id: 'Blover',
+                name: '三叶草',
+                emoji: '🌱',
+                image: 'common/plant/三叶草.png',
+                cost: 100,
+                health: 300,
+                damage: 8,
+                range: '无',
+                recharge: '8秒',
+                special: '辅助',
+                description: '可以吹散迷雾24秒，并吹跑气球僵尸。'
+            },
+            {
+                id: 'CabbagePult',
+                name: '卷心投手',
+                emoji: '🌱',
+                image: 'common/plant/卷心投手.png',
+                cost: 100,
+                health: 300,
+                damage: 25,
+                range: '抛物线',
+                recharge: '8秒',
+                special: '投掷',
+                description: '在第3.9秒投掷子弹，第4.5秒击中僵尸并造成25点伤害。'
+            },
+            {
+                id: 'KernelPult',
                 name: '玉米投手',
                 emoji: '🌱',
                 image: 'common/plant/玉米投手.png',
@@ -1209,9 +1287,35 @@
                 health: 300,
                 damage: 15,
                 range: '抛物线',
-                recharge: '中等',
+                recharge: '8秒',
                 special: '投掷',
-                description: '玉米投手投掷玉米粒，偶尔扔出黄油使僵尸眩晕。（还未加入重制版）'
+                description: '在第3.9秒投掷子弹，第4.5秒击中僵尸并造成伤害。有30%几率投出黄油。玉米粒对僵尸造成10点伤害，黄油对僵尸造成50点伤害并冻结僵尸5秒。'
+            },
+            {
+                id: 'MelonPult',
+                name: '西瓜投手',
+                emoji: '🌱',
+                image: 'common/plant/西瓜投手.png',
+                cost: 300,
+                health: 300,
+                damage: 100,
+                range: '抛物线',
+                recharge: '8秒',
+                special: '投掷',
+                description: '在第3.9秒投掷子弹，第4.5秒击中僵尸并造成100点伤害。'
+            },
+            {
+                id: 'WinterMelonPult',
+                name: '冰瓜投手',
+                emoji: '🌱',
+                image: 'common/plant/冰瓜投手.png',
+                cost: 200,
+                health: 300,
+                damage: 110,
+                range: '抛物线',
+                recharge: '8秒',
+                special: '投掷',
+                description: '在第3.9秒投掷子弹，第4.5秒击中僵尸并造成110点伤害，并提供10秒减速。'
             },
             ],
             // 僵尸图鉴区域
@@ -1250,6 +1354,28 @@
                 description: '铁桶僵尸防御较高，是前期的棘手敌人。铁桶提供共计1200点第一类防御值，每400点切换破损状态。'
             }, 
             {
+                id: 'door',
+                name: '钢门僵尸',
+                emoji: '🌱',
+                image: 'common/zombie/钢门僵尸moving.png',
+                health: 200,
+                speed: '10px/2.5s',
+                damage: 100,
+                special: '钢门',
+                description: '钢门提供共计1200点第二类防御值，每400点切换破损状态，第二类防具免疫寒冰子弹的减速。'
+            },
+            {
+                id: 'bucketdoor',
+                name: '铁桶钢门僵尸',
+                emoji: '🌱',
+                image: 'common/zombie/铁桶钢门僵尸.png',
+                health: 200,
+                speed: '10px/2.5s',
+                damage: 100,
+                special: '钢门',
+                description: '铁桶提供共计1200点第一类防御值，每400点切换破损状态。钢门提供共计1200点第二类防御值，每400点切换破损状态，第二类防具免疫寒冰子弹的减速。'
+            },
+            {
                 id: 'flag',
                 name: '旗帜僵尸',
                 emoji: '🌱',
@@ -1283,6 +1409,17 @@
                 description: '读报僵尸被攻击后会愤怒，速度大幅提升（10像素每2.5秒 → 20像素每1.5秒）。报纸提供共计180点第二类防御值，每60点切换破损状态。'
             }, 
             {
+                id: 'bucketnewspaper',
+                name: '铁桶报纸僵尸',
+                emoji: '🌱',
+                image: 'common/zombie/铁桶报纸僵尸.png',
+                health: 200,
+                speed: '10px/2.5s',
+                damage: 100,
+                special: '超速',
+                description: '读报僵尸被攻击后会愤怒，速度大幅提升（10像素每2.5秒 → 20像素每1.5秒）。铁桶提供共计1200点第一类防御值，每400点切换破损状态。报纸提供共计180点第二类防御值，每60点切换破损状态。'
+            }, 
+            {
                 id: 'football',
                 name: '橄榄球僵尸',
                 emoji: '🌱',
@@ -1291,7 +1428,29 @@
                 speed: '20px/1.5s',
                 damage: 100,
                 special: '超速 · 防御',
-                description: '橄榄球僵尸速度极快，且防御较高，能迅速突破防线。橄榄头盔提供共计1800点第一类防御值，每600点切换破损状态。'
+                description: '橄榄球僵尸速度极快，且防御较高，能迅速突破防线。橄榄头盔提供共计1560点第一类防御值，每520点切换破损状态。'
+            }, 
+            {
+                id: 'blackfootball',
+                name: '黑橄榄球僵尸',
+                emoji: '🌱',
+                image: 'common/zombie/黑橄榄僵尸moving.png',
+                health: 200,
+                speed: '22px/1.5s',
+                damage: 150,
+                special: '超速 · 防御',
+                description: '橄榄球僵尸Pro，橄榄头盔提供共计3360点第一类防御值，每1120点切换破损状态。'
+            }, 
+            {
+                id: 'blackdoorfootball',
+                name: '钢门黑橄榄球僵尸',
+                emoji: '🌱',
+                image: 'common/zombie/钢门黑橄榄球僵尸.png',
+                health: 200,
+                speed: '22px/1.5s',
+                damage: 150,
+                special: '超速 · 防御',
+                description: '橄榄球僵尸ProMax，橄榄头盔提供共计3360点第一类防御值，每1120点切换破损状态。钢门提供共计1200点第二类防御值，每400点切换破损状态，第二类防具免疫寒冰子弹的减速。'
             }, 
             {
                 id: 'dancer',
@@ -1316,15 +1475,15 @@
                 description: '巨人僵尸拥有极高的生命值和破坏力，需集中火力攻击。在半血时扔出小鬼僵尸，并变成受伤形态。'
             },
             {
-                id: 'door',
-                name: '钢门僵尸',
+                id: 'redeyesgiant',
+                name: '红眼巨人僵尸',
                 emoji: '🌱',
-                image: 'common/zombie/钢门僵尸moving.png',
-                health: 200,
-                speed: '10px/2.5s',
-                damage: 100,
-                special: '钢门',
-                description: '钢门提供共计1200点第二类防御值，每400点切换破损状态，第二类防具免疫寒冰子弹的减速。'
+                image: 'common/zombie/红眼巨人moving.png',
+                health: 7200,
+                speed: '12px/2.5s',
+                damage: 9999,
+                special: '坦克',
+                description: '巨人僵尸Pro，3600血量时变回白眼，1800血量时投掷小鬼僵尸并切换受伤状态。'
             },
             {
                 id: 'jackinbox',
@@ -1381,6 +1540,17 @@
                 special: '泳圈',
                 description: '鸭子泳圈提供了浮力，使僵尸能够在水面移动。铁桶提供共计1200点第一类防御值，每400点切换破损状态。'
             },
+            {
+                id: 'DolphinRiderZombie',
+                name: '海豚僵尸',
+                emoji: '🌱',
+                image: 'common/zombie/海豚僵尸移动.png',
+                health: 300,
+                speed: '20px/1s',
+                damage: 100,
+                special: '跳跃',
+                description: '可跳过第一个障碍物，突破防线。相比于原版，本版本血量更厚，在跳跃前速度更快。跳跃前移动速度为20像素每1秒，跳跃后移动速度为12像素每2.5秒。跳跃可以被高坚果所阻挡。'
+            },
         ],
         // 咨询帖子区域
         guides: 
@@ -1400,9 +1570,9 @@
                 date: '2026-07-24',
                 content: `
                     <p>共计3个版本，分别是正常版、兼容版、重制版，建议看完本帖子再去下面选择各版本的链接</p>
-                    <p><a href="https://www.bandbbs.cn/threads/27576/" target="_blank">点击查看如何选择合适的版本</a></p>
+                    <p><a href="post/如何选择合适的版本.html" target="_blank">点击查看如何选择合适的版本</a></p>
                 `,
-                link: 'https://www.bandbbs.cn/threads/27576/'
+                link: 'post/如何选择合适的版本.html'
             },
             {
                 id: 'guide3',
