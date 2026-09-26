@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HNT游戏激活</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: -apple-system, sans-serif; background: #111; color: #eee;
+               display: flex; justify-content: center; align-items: flex-start;
+               min-height: 100vh; margin: 0; padding: 24px 16px; }
+        .card { background: #1e1e1e; border-radius: 12px; padding: 28px;
+                width: 100%; max-width: 420px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+        h1 { font-size: 20px; text-align: center; margin: 0 0 8px; }
+        .subtitle { text-align: center; font-size: 13px; color: #888; margin-bottom: 24px; }
+        label { display: block; font-size: 13px; color: #aaa; margin-bottom: 6px; }
+        input[type="text"] { width: 100%; padding: 12px; background: #2a2a2a;
+            border: 1px solid #444; border-radius: 8px; color: #fff; font-size: 16px;
+            margin-bottom: 16px; transition: border-color 0.2s; }
+        input[type="text"]:focus { outline: none; border-color: #4ea1ff; }
+        input[type="text"]::placeholder { color: #666; }
+        input[type="text"].invalid { border-color: #ff6666; }
+        input[type="text"].valid { border-color: #4ecc7a; }
+        button { width: 100%; padding: 14px; background: #4ea1ff; border: none;
+            border-radius: 8px; color: #fff; font-size: 16px; font-weight: 500;
+            cursor: pointer; transition: background 0.2s; }
+        button:hover:not(:disabled) { background: #3a8fe0; }
+        button:disabled { opacity: 0.5; cursor: not-allowed; }
+        .result { margin-top: 20px; padding: 16px; border-radius: 8px; text-align: center;
+            display: none; word-break: break-all; line-height: 1.5; }
+        .success { background: #1a3a2a; color: #4ecc7a; }
+        .error { background: #3a1a1a; color: #ff6666; }
+        .code { font-size: 28px; letter-spacing: 4px; margin-top: 10px;
+            font-weight: bold; font-family: "Courier New", monospace; }
+        .field-hint { font-size: 11px; color: #ff8888; margin: -10px 0 12px 0;
+            display: none; }
+        .field-hint.show { display: block; }
+        .tips { font-size: 12px; color: #666; margin-top: 20px; line-height: 1.7; }
+        .tips strong { color: #888; }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>游戏激活</h1>
+    <div class="subtitle">输入设备码和订单号，获取解锁码</div>
+
+    <div id="gameError" class="result error"></div>
+
+    <div id="formArea">
+        <label>设备码（手环上显示）</label>
+        <input id="deviceCode" type="text" placeholder="例如 1A2B-3D4E-1234-8765"
+               autocomplete="off" maxlength="19" oninput="formatDeviceCode(this)" />
+        <div id="deviceCodeHint" class="field-hint">设备码格式不正确，应为 XXXX-XXXX-XXXX-XXXX</div>
+
+        <label>爱发电订单号</label>
+        <input id="orderNo" type="text" placeholder="付款后在订单详情页查看"
+               autocomplete="off" oninput="validateOrderNo(this)" />
+        <div id="orderNoHint" class="field-hint">订单号格式不正确，应为 10-32 位数字</div>
+
+        <button id="btn" onclick="activate()">获取解锁码</button>
+
+        <div id="result" class="result"></div>
+
+        <div class="tips">
+            <strong>订单号在哪看？</strong><br>
+            爱发电 → 我的 → 订单 → 点击对应订单查看订单号
+        </div>
+        <div class="tips">
+            <strong>设备码输入错误在爱发电找人工</strong><br>
+            人工不一定随时在线，需要耐心等待
+        </div>
+        <div class="tips">
+            <strong>每分钟只能查询一次</strong><br>
+            每分钟只能查询一次，多次查询只能等待一分钟之后
+        </div>
+        <div class="tips">
+            <strong>土豆数据库随时爆炸</strong><br>
+            确认输入正确但查询失败，1分钟后重新尝试即可
+        </div>
+    </div>
+</div>
+
+<script>
+// ========== 云函数访问路径 ==========
+const API_URL = 'https://1492152119-gpz7bvmw8n.ap-guangzhou.tencentscf.com/api/activate';
+
+// 允许的游戏白名单（仅用于前端友好提示，真正的校验在后端）
+const ALLOWED_GAMES = [
+    'com.hazenotea.pvz.watch',
+    'com.hazenotea.hntgamebox'
+];
+
+// ========== 重试倒计时 ==========
+let countdownTimer = null;
+let countdownEnd = 0;
+
+function startCountdown(seconds) {
+    clearInterval(countdownTimer);
+    countdownEnd = Date.now() + seconds * 1000;
+    updateCountdown();
+    countdownTimer = setInterval(updateCountdown, 1000);
+}
+
+function updateCountdown() {
+    const btn = document.getElementById('btn');
+    const remain = Math.ceil((countdownEnd - Date.now()) / 1000);
+    if (remain <= 0) {
+        clearInterval(countdownTimer);
+        countdownTimer = null;
+        btn.disabled = false;
+        btn.textContent = '获取解锁码';
+    } else {
+        btn.disabled = true;
+        btn.textContent = remain + ' 秒后可重试';
+    }
+}
+
+// ========== 从 URL 读取 game 参数 ==========
+const params = new URLSearchParams(location.search);
+const GAME_ID = (params.get('game') || '').trim();
+
+window.addEventListener('DOMContentLoaded', function () {
+    const formArea = document.getElementById('formArea');
+    const gameError = document.getElementById('gameError');
+
+    if (!GAME_ID) {
+        gameError.textContent = '缺少游戏参数，请从游戏内提供的链接进入本页面。';
+        gameError.style.display = 'block';
+        formArea.classList.add('hidden');
+        return;
+    }
+    if (ALLOWED_GAMES.indexOf(GAME_ID) === -1) {
+        gameError.textContent = '无效的游戏参数：' + GAME_ID;
+        gameError.style.display = 'block';
+        formArea.classList.add('hidden');
+        return;
+    }
+});
+
+// ========== 设备码格式化与校验 ==========
+/**
+ * 自动格式化设备码：
+ *  - 转大写
+ *  - 只保留 0-9 和 A-F
+ *  - 最多 16 位
+ *  - 每 4 位插入一个连字符
+ */
+function formatDeviceCode(input) {
+    const raw = input.value.toUpperCase().replace(/[^0-9A-F]/g, '').slice(0, 16);
+    let formatted = '';
+    for (let i = 0; i < raw.length; i++) {
+        if (i > 0 && i % 4 === 0) formatted += '-';
+        formatted += raw[i];
+    }
+    input.value = formatted;
+
+    // 实时反馈：完整且合法显示绿色，不完整显示中性，非法字符已被过滤
+    const hint = document.getElementById('deviceCodeHint');
+    if (formatted.length === 19) {
+        input.classList.remove('invalid');
+        input.classList.add('valid');
+        hint.classList.remove('show');
+    } else {
+        input.classList.remove('valid');
+        input.classList.remove('invalid');
+        hint.classList.remove('show');
+    }
+}
+
+/**
+ * 校验设备码是否符合 XXXX-XXXX-XXXX-XXXX 格式
+ */
+function isValidDeviceCode(code) {
+    return /^[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}$/.test(code);
+}
+
+// ========== 订单号校验 ==========
+/**
+ * 订单号校验：10-32 位纯数字
+ */
+function validateOrderNo(input) {
+    // 去掉空格
+    input.value = input.value.replace(/\s/g, '');
+    const hint = document.getElementById('orderNoHint');
+    if (!input.value) {
+        input.classList.remove('invalid', 'valid');
+        hint.classList.remove('show');
+        return;
+    }
+    if (/^\d{10,32}$/.test(input.value)) {
+        input.classList.remove('invalid');
+        input.classList.add('valid');
+        hint.classList.remove('show');
+    } else {
+        input.classList.remove('valid');
+        // 不立即标红，等失去焦点或提交时再标红，避免打字过程中就报错
+        hint.classList.remove('show');
+    }
+}
+
+// ========== 激活逻辑 ==========
+async function activate() {
+    if (countdownTimer) return;   // 倒计时中，点按钮无效
+
+    const deviceCodeInput = document.getElementById('deviceCode');
+    const orderNoInput = document.getElementById('orderNo');
+    const deviceCodeHint = document.getElementById('deviceCodeHint');
+    const orderNoHint = document.getElementById('orderNoHint');
+    const deviceCode = deviceCodeInput.value.trim();
+    const orderNo = orderNoInput.value.trim();
+    const btn = document.getElementById('btn');
+    const result = document.getElementById('result');
+
+    // 重置错误样式
+    deviceCodeInput.classList.remove('invalid');
+    orderNoInput.classList.remove('invalid');
+    deviceCodeHint.classList.remove('show');
+    orderNoHint.classList.remove('show');
+
+    // ---- 设备码校验 ----
+    if (!deviceCode) {
+        showResult('请输入设备码', 'error');
+        deviceCodeInput.classList.add('invalid');
+        return;
+    }
+    if (!isValidDeviceCode(deviceCode)) {
+        deviceCodeInput.classList.add('invalid');
+        deviceCodeHint.classList.add('show');
+        showResult('设备码格式不正确，应为 XXXX-XXXX-XXXX-XXXX', 'error');
+        return;
+    }
+
+    // ---- 订单号校验 ----
+    if (!orderNo) {
+        showResult('请输入订单号', 'error');
+        orderNoInput.classList.add('invalid');
+        return;
+    }
+    if (!/^\d{10,32}$/.test(orderNo)) {
+        orderNoInput.classList.add('invalid');
+        orderNoHint.classList.add('show');
+        showResult('订单号格式不正确，应为 10-32 位数字', 'error');
+        return;
+    }
+
+    // ---- 游戏参数校验 ----
+    if (!GAME_ID) {
+        showResult('缺少游戏参数', 'error');
+        return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = '验证中...';
+    result.style.display = 'none';
+
+    try {
+        const resp = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                device_code: deviceCode,
+                out_trade_no: orderNo,
+                game_id: GAME_ID
+            })
+        });
+
+        // 先尝试解析 JSON，无论状态码是多少
+        let data = null;
+        try {
+            data = await resp.json();
+        } catch (jsonErr) {
+            showResult('服务器返回异常（HTTP ' + resp.status + '）', 'error');
+            startCountdown(60);
+            return;
+        }
+
+        if (data && data.success) {
+            clearInterval(countdownTimer);   // 成功就清掉倒计时
+            countdownTimer = null;
+            showResult(
+                '您的解锁码：' +
+                '<div class="code">' + data.unlock_code + '</div>' +
+                '<div style="font-size:13px;margin-top:12px;color:#8ce0a5;">' +
+                '请在手环键盘上输入此解锁码</div>',
+                'success'
+            );
+        } else {
+            showResult((data && data.message) || '土豆数据库启动中，请1分钟后重试', 'error');
+            startCountdown(60);
+        }
+    } catch (e) {
+        console.error(e);
+        showResult('网络错误，请稍后重试', 'error');
+        startCountdown(60);
+    } finally {
+        // 只有不在倒计时中才恢复按钮，否则会覆盖倒计时文案
+        if (!countdownTimer) {
+            btn.disabled = false;
+            btn.textContent = '获取解锁码';
+        }
+    }
+}
+
+function showResult(html, type) {
+    const result = document.getElementById('result');
+    result.className = 'result ' + type;
+    result.innerHTML = html;
+    result.style.display = 'block';
+}
+</script>
+</body>
+</html>
