@@ -1317,6 +1317,45 @@
                 special: '投掷',
                 description: '在第3.9秒投掷子弹，第4.5秒击中僵尸并造成110点伤害，并提供10秒减速。'
             },
+            {
+                id: 'pumpkin',
+                name: '南瓜头',
+                emoji: '🌱',
+                image: 'common/plant/南瓜头.png',
+                cost: 125,
+                health: 3600,
+                damage: 0,
+                range: '无',
+                recharge: '30秒',
+                special: '防御',
+                description: '可以套在植物上提供3600点南瓜头值。在重制版，一次性植物会炸飞南瓜头。'
+            },
+            {
+                id: 'stoneTallNut',
+                name: '石果子',
+                emoji: '🌱',
+                image: 'common/plant/stoneTallNut.png',
+                cost: 675,
+                health: 14400,
+                damage: 0,
+                range: '无',
+                recharge: '80秒',
+                special: '防御 · 反伤',
+                description: '源自贴吧，对啃食的首位僵尸造成伤害，反伤倍率0.5（受到的伤害*0.5），紫卡植物，需要种植在高坚果上'
+            },
+            {
+                id: 'boxMachine',
+                name: '礼盒机',
+                emoji: '🌱',
+                image: 'common/plant/boxMachine.png',
+                cost: 200,
+                health: 2000,
+                damage: 0,
+                range: '无',
+                recharge: '5秒',
+                special: '礼盒',
+                description: '每50秒扣除3颗银币并生成一个礼盒（植物盒子60%、植物盒25%、随机盒子12%、极品盒子3%），没有银币时不生产'
+            },
             ],
             // 僵尸图鉴区域
             zombies: [
@@ -1550,6 +1589,28 @@
                 damage: 100,
                 special: '跳跃',
                 description: '可跳过第一个障碍物，突破防线。相比于原版，本版本血量更厚，在跳跃前速度更快。跳跃前移动速度为20像素每1秒，跳跃后移动速度为12像素每2.5秒。跳跃可以被高坚果所阻挡。'
+            },
+            {
+                id: 'scholarZombie',
+                name: '学者僵尸',
+                emoji: '🌱',
+                image: 'common/zombie/scholarZombieShock.png',
+                health: 1200,
+                speed: '15px/1s',
+                damage: 200,
+                special: '超速 · 高伤',
+                description: '源自95版二爷，贴图使用融合版贴图，第二类防具书本提供总计600点防御，每200点切换破损状态，书本掉落后暴走，速度提升到35px/1s，伤害达到200hp/0.5s'
+            },
+            {
+                id: 'zomboni',
+                name: '冰车僵尸',
+                emoji: '🌱',
+                image: 'common/zombie/冰车僵尸moving.png',
+                health: 1800,
+                speed: '6px/1s',
+                damage: 9999,
+                special: '碾压',
+                description: '移动时碾压植物并生成冰道，冰道无法种植植物，需要120s消失，或使用火爆辣椒清除'
             },
         ],
         // 咨询帖子区域
