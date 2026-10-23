@@ -622,7 +622,7 @@ window.PVZ_PLANTS = [
         health: 2000,
         damage: 0,
         range: '无',
-        recharge: '5秒',
+        recharge: '50秒',
         special: '礼盒',
         description: '每50秒扣除3颗银币并生成一个礼盒（植物盒子60%、植物盒25%、随机盒子12%、极品盒子3%），没有银币时不生产'
     },
@@ -677,5 +677,18 @@ window.PVZ_PLANTS = [
         recharge: '50秒',
         special: '吸铁',
         description: '原版用于自动拾取银币，由于本版本不需要拾取银币，且为了实用考虑，本版本的吸金磁为加强版磁力菇，恢复时间是磁力菇的一半（20秒），且白天不会睡觉（紫卡植物，需要种植在磁力菇上）'
+    },
+    {
+        id: 'chompiranha',
+        name: '龙蒺藜',
+        emoji: '🌱',
+        image: 'common/plant/chompiranha.png',
+        cost: 250,
+        health: 300,
+        damage: 9600,
+        range: '近战',
+        recharge: '30秒',
+        special: '吞噬',
+        description: '龙蒺藜一大口对前方僵尸造成9600伤害，需要30秒的消化时间。（一口可以吞掉红眼巨人僵尸），紫卡植物，需要种植在大嘴花上'
     },
 ];
