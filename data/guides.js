@@ -26,7 +26,7 @@ window.PVZ_GUIDES = [
             <p>激活完整游戏，只用一次激活，永久解锁“我是僵尸”模式及后续所有收费内容。</p>
             <p>点击下方“阅读原文”进入激活页面，最好看一下激活教程。</p>
         `,
-        link: 'tools/activate.html?game=com.hazenotea.pvz.watch'
+        link: 'https://hazenotea.github.io/HNT-PW/pages/activate/activate.html?game=com.hazenotea.pvz.watch'
     },
     {
         id: 'guide3',
