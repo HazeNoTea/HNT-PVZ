@@ -3,59 +3,282 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HNT植物大战僵尸</title>
+    <title>HazeNoTea｜植物大战僵尸 · 重制版</title>
+    <meta name="description" content="HazeNoTea 植物大战僵尸重制版：一次激活，永久解锁「我是僵尸」模式及后续更新。含图文激活教程、植物图鉴与僵尸图鉴。" />
+    <meta name="theme-color" content="#12351c" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="HazeNoTea" />
+    <meta property="og:title" content="HazeNoTea｜植物大战僵尸 · 重制版" />
+    <meta property="og:description" content="游戏激活入口、图文教程与完整植物 / 僵尸图鉴。" />
+    <meta property="og:url" content="https://hazenotea.github.io/HNT-PVZ/" />
+    <meta property="og:image" content="https://hazenotea.github.io/HNT-PVZ/common/logo.png" />
+    <link rel="canonical" href="https://hazenotea.github.io/HNT-PVZ/" />
     <link rel="icon" type="image/png" href="common/logo.png" />
+    <link rel="preload" as="image" href="common/element/hazenotea_title.webp" type="image/webp" />
     <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+    <a class="skip-link" href="#library">跳到主要内容</a>
 
     <!-- ===== 提示 Toast ===== -->
-    <div class="toast" id="toast"></div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    <!-- ===== 主应用 ===== -->
-    <div class="app" id="app">
+    <!-- ===== 顶部导航 ===== -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="index.html" aria-label="HazeNoTea 首页">
+                <img src="common/logo.png" alt="" class="brand-logo" width="46" height="46" />
+                <span class="brand-copy">
+                    <strong>HazeNoTea</strong>
+                    <small>植物大战僵尸 · 重制版</small>
+                </span>
+            </a>
 
-        <!-- 头部 -->
-        <header class="header">
-            <div class="logo-area">
-                <img src="common/logo.png" alt="Logo" class="logo-icon" />
-                <span class="logo-text">植物大战僵尸·重制版 <small>@HazeNoTea</small></span>
-            </div>
-            <div class="header-actions">
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="搜索名称..." />
-                    <button id="searchBtn">🔍 查找</button>
+            <nav class="nav" aria-label="主导航">
+                <a class="nav-link" href="#library">资讯与图鉴</a>
+                <a class="nav-link" href="#community">玩家社群</a>
+                <a class="nav-cta" href="https://hazenotea.github.io/HNT-PW/pages/activate/activate.html?game=com.hazenotea.pvz.watch" target="_blank" rel="noopener">
+                    <span class="nav-cta-dot" aria-hidden="true"></span>
+                    激活游戏
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page">
+        <!-- ===== 首屏：激活入口 ===== -->
+        <section class="hero" aria-labelledby="heroTitle">
+            <span class="hero-ground" aria-hidden="true"></span>
+
+            <div class="hero-copy">
+                <p class="eyebrow">HAZENOTEA · PVZ REMASTERED</p>
+
+                <h1 id="heroTitle">
+                    <picture class="hero-wordmark-wrap">
+                        <source srcset="common/element/hazenotea_title.webp" type="image/webp" />
+                        <img class="hero-wordmark" src="common/element/hazenotea_title-1200.png" alt="HazeNoTea" width="1200" height="393" />
+                    </picture>
+                    <span class="hero-title-sub">植物大战僵尸 · 重制版</span>
+                </h1>
+
+                <p class="hero-lead">
+                    一次激活，永久解锁<strong>「我是僵尸」</strong>模式及后续全部更新内容。
+                    准备好爱发电订单号和手环设备码，跟着教程几分钟就能完成。
+                </p>
+
+                <div class="hero-actions">
+                    <a class="btn btn--primary btn--lg" href="https://hazenotea.github.io/HNT-PW/pages/activate/activate.html?game=com.hazenotea.pvz.watch" target="_blank" rel="noopener">
+                        激活游戏
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg>
+                    </a>
+                    <a class="btn btn--ghost btn--lg" href="post/activateGuide.html">
+                        查看激活教程
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z" />
+                        </svg>
+                    </a>
                 </div>
-                <span class="stats" id="statsCounter">0 个条目</span>
+
+                <ul class="hero-checks" aria-label="激活说明">
+                    <li>一次激活，永久解锁</li>
+                    <li>后续更新持续可用</li>
+                    <li>全程有图文教程</li>
+                </ul>
             </div>
-        </header>
 
-        <!-- 分类导航 -->
-        <div class="tabs" id="tabsContainer">
-            <button class="tab-btn active" data-filter="guide">🖼️游戏资讯 <span class="badge" id="gameGuide">0</span></button>
-            <button class="tab-btn" data-filter="all">🌱全部图鉴 <span class="badge" id="countAll">0</span></button>
-            <button class="tab-btn" data-filter="plant">🌻植物图鉴 <span class="badge" id="countPlant">0</span></button>
-            <button class="tab-btn" data-filter="zombie">😅僵尸图鉴 <span class="badge" id="countZombie">0</span></button>
+            <div class="hero-visual">
+                <img class="hero-zombie" src="common/element/学者僵尸.png" alt="" aria-hidden="true" />
+                <img class="hero-plant" src="common/element/向日葵.png" alt="" aria-hidden="true" />
+
+                <aside class="activation-pass" aria-label="激活流程">
+                    <div class="pass-head">
+                        <span class="pass-label">ACTIVATION PASS</span>
+                        <span class="pass-status">READY</span>
+                    </div>
+                    <div class="pass-body">
+                        <h2>四步完成游戏激活</h2>
+                        <p class="pass-sub">一次激活，永久解锁后续内容</p>
+
+                        <ol class="pass-steps">
+                            <li class="pass-step">
+                                <span class="pass-num">01</span>
+                                <span>
+                                    <strong>赞助并保存订单号</strong>
+                                    <small>任选一个爱发电赞助项目</small>
+                                </span>
+                            </li>
+                            <li class="pass-step">
+                                <span class="pass-num">02</span>
+                                <span>
+                                    <strong>找到激活网站</strong>
+                                    <small>扫描二维码或访问官网</small>
+                                </span>
+                            </li>
+                            <li class="pass-step">
+                                <span class="pass-num">03</span>
+                                <span>
+                                    <strong>输入设备码与订单号</strong>
+                                    <small>填写手环设备码和订单号</small>
+                                </span>
+                            </li>
+                            <li class="pass-step">
+                                <span class="pass-num">04</span>
+                                <span>
+                                    <strong>获取解锁码</strong>
+                                    <small>按手环端提示完成激活</small>
+                                </span>
+                            </li>
+                        </ol>
+
+                        <a class="pass-action" href="https://hazenotea.github.io/HNT-PW/pages/activate/activate.html?game=com.hazenotea.pvz.watch" target="_blank" rel="noopener">
+                            前往激活页面
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14M13 6l6 6-6 6" />
+                            </svg>
+                        </a>
+                        <p class="pass-foot">第一次激活？<a href="post/activateGuide.html">先看图文教程</a></p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- ===== 快速说明 ===== -->
+        <div class="quick-strip" aria-label="激活要点">
+            <div class="quick-item">
+                <span class="quick-icon" aria-hidden="true">∞</span>
+                <div>
+                    <strong>永久解锁</strong>
+                    <p>一次激活，「我是僵尸」模式及后续更新持续可用。</p>
+                </div>
+            </div>
+            <div class="quick-item">
+                <span class="quick-icon" aria-hidden="true">4</span>
+                <div>
+                    <strong>四步完成激活</strong>
+                    <p>跟着教程，从赞助、订单号到解锁码一步步完成。</p>
+                </div>
+            </div>
+            <div class="quick-item">
+                <span class="quick-icon" aria-hidden="true">?</span>
+                <div>
+                    <strong>教程兜底</strong>
+                    <p>每个步骤都配了截图，第一次激活也能顺利完成。</p>
+                </div>
+            </div>
         </div>
 
-        <!-- 卡片网格 -->
-        <div class="grid" id="gridContainer"></div>
+        <!-- ===== 资讯与图鉴 ===== -->
+        <section class="library" id="library" aria-labelledby="libraryTitle">
+            <div class="section-head">
+                <div>
+                    <p class="kicker">ARCHIVE &amp; GUIDES</p>
+                    <h2 id="libraryTitle">资讯与图鉴</h2>
+                </div>
+                <p>从激活公告、版本资讯，到每一种植物与僵尸的完整数据，都在这里。</p>
+            </div>
 
-        <!-- 底部 -->
-        <div class="footer">
-            <span>植物大战僵尸重制版 · 图鉴 v1.5 HazeNoTea && DeepSeek辅助完成</span>
-        </div>
-    </div>
+            <div class="explorer">
+                <div class="explorer-bar">
+                    <div class="tabs" id="tabsContainer" role="tablist" aria-label="内容分类">
+                        <button class="tab-btn active" type="button" role="tab" aria-selected="true" data-filter="guide">
+                            资讯教程 <span class="badge" id="gameGuide">0</span>
+                        </button>
+                        <button class="tab-btn" type="button" role="tab" aria-selected="false" data-filter="all">
+                            全部图鉴 <span class="badge" id="countAll">0</span>
+                        </button>
+                        <button class="tab-btn" type="button" role="tab" aria-selected="false" data-filter="plant">
+                            植物图鉴 <span class="badge" id="countPlant">0</span>
+                        </button>
+                        <button class="tab-btn" type="button" role="tab" aria-selected="false" data-filter="zombie">
+                            僵尸图鉴 <span class="badge" id="countZombie">0</span>
+                        </button>
+                    </div>
+
+                    <div class="search-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <path d="m20 20-3.2-3.2"></path>
+                        </svg>
+                        <input type="search" id="searchInput" placeholder="搜索名称、能力或资讯…" aria-label="搜索名称、能力或资讯" autocomplete="off" />
+                        <button id="searchBtn" type="button">搜索</button>
+                    </div>
+                </div>
+
+                <div class="explorer-meta">
+                    <span class="stats" id="statsCounter">正在加载…</span>
+                    <span class="meta-tip">点击条目查看详细资料</span>
+                </div>
+
+                <div class="grid guide-grid" id="gridContainer" role="tabpanel" aria-live="polite"></div>
+            </div>
+        </section>
+
+        <!-- ===== 玩家社群 ===== -->
+        <section class="community" id="community" aria-labelledby="communityTitle">
+            <div class="community-copy">
+                <p class="kicker">JOIN THE LAWN</p>
+                <h2 id="communityTitle">和其他玩家一起守草坪</h2>
+                <p>版本通知、玩法交流、激活问题反馈，都可以在社群和作者主页找到。</p>
+            </div>
+
+            <div class="community-links">
+                <a class="community-card" href="https://space.bilibili.com/364345419" target="_blank" rel="noopener">
+                    <span class="community-icon" aria-hidden="true">B</span>
+                    <strong>作者的 B 站</strong>
+                    <small>视频与更新动态 ↗</small>
+                </a>
+                <a class="community-card" href="https://ifdian.net/a/HazeNoTea" target="_blank" rel="noopener">
+                    <span class="community-icon" aria-hidden="true">A</span>
+                    <strong>爱发电</strong>
+                    <small>赞助与支持作者 ↗</small>
+                </a>
+                <button class="community-card" type="button" data-copy="1129329657">
+                    <span class="community-icon" aria-hidden="true">Q</span>
+                    <strong>QQ 4 群</strong>
+                    <small>1129329657 · 点击复制</small>
+                </button>
+            </div>
+        </section>
+
+        <!-- ===== 页脚 ===== -->
+        <footer class="site-footer">
+            <div class="footer-brand">
+                <img src="common/logo.png" alt="" width="36" height="36" />
+                <div>
+                    <strong>HazeNoTea</strong>
+                    <span>植物大战僵尸 · 重制版</span>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="post/activateGuide.html">激活教程</a>
+                <a href="https://hazenotea.github.io/HNT-PW/pages/activate/activate.html?game=com.hazenotea.pvz.watch" target="_blank" rel="noopener">激活游戏</a>
+                <a href="post/免责声明.html">免责声明</a>
+            </div>
+            <p class="footer-copy">© 2026 HazeNoTea · 本站为游戏激活入口、资讯与图鉴。游戏版权归原权利方所有。</p>
+        </footer>
+    </main>
 
     <!-- ===== 模态框 ===== -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal" id="modalContent">
-            <button class="modal-close" id="modalCloseBtn">✕</button>
-            <div id="modalIconContainer" style="text-align:center; margin-bottom:4px;"></div>
-            <div class="modal-name" id="modalName">向日葵</div>
-            <div style="text-align:center;"><span class="modal-type" id="modalType">🌱 植物</span></div>
-            <div class="modal-desc" id="modalDesc">生产阳光，为你提供能量。</div>
+    <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+        <div class="modal" id="modalContent" role="dialog" aria-modal="true" aria-labelledby="modalName" aria-describedby="modalDesc">
+            <button class="modal-close" id="modalCloseBtn" type="button" aria-label="关闭详情">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                    <path d="M6 6l12 12M18 6 6 18" />
+                </svg>
+            </button>
+            <div class="modal-icon-wrap" id="modalIconContainer"></div>
+            <p class="modal-kicker" id="modalKicker">档案</p>
+            <h2 class="modal-name" id="modalName"></h2>
+            <div class="modal-type-row"><span class="modal-type" id="modalType"></span></div>
+            <div class="modal-desc" id="modalDesc"></div>
             <div class="props" id="modalProps"></div>
+            <div class="modal-actions" id="modalActions"></div>
         </div>
     </div>
 
@@ -65,340 +288,510 @@
     <script src="data/guides.js"></script>
 
     <script>
-        // ================================================================
-        // 1. 数据来源
-        // ================================================================
-        // 图鉴数据已拆分到 data/plants.js、data/zombies.js、data/guides.js
-        // 维护时请直接编辑上述文件，无需改动本页面代码。
+        (() => {
+            'use strict';
 
-        // ================================================================
-        // 2. 状态
-        // ================================================================
-        let allData = null;
-        let currentFilter = 'guide';
-        let searchQuery = '';
+            // ================================================================
+            // 1. 常量与状态
+            // ================================================================
+            const ACTIVATE_URL = 'https://hazenotea.github.io/HNT-PW/pages/activate/activate.html?game=com.hazenotea.pvz.watch';
+            const FEATURED_GUIDES = new Set(['guide1', 'guide2']);
+            const GUIDE_CTA = {
+                guide1: '查看激活教程',
+                guide2: '立即激活',
+                guide7: '前往 B 站',
+                guide8: '打开配置器',
+                guide9: '阅读全文'
+            };
+            const GUIDE_HINT = {
+                guide1: '4 步图文教程',
+                guide2: '一次激活 · 永久解锁'
+            };
+            const FILTER_UNIT = {
+                guide: '条资讯',
+                all: '个条目',
+                plant: '种植物',
+                zombie: '种僵尸'
+            };
 
-        // DOM 引用
-        const grid = document.getElementById('gridContainer');
-        const searchInput = document.getElementById('searchInput');
-        const searchBtn = document.getElementById('searchBtn');
-        const statsCounter = document.getElementById('statsCounter');
-        const tabsContainer = document.getElementById('tabsContainer');
-        const modalOverlay = document.getElementById('modalOverlay');
-        const modalCloseBtn = document.getElementById('modalCloseBtn');
-        const modalIconContainer = document.getElementById('modalIconContainer');
-        const modalName = document.getElementById('modalName');
-        const modalType = document.getElementById('modalType');
-        const modalDesc = document.getElementById('modalDesc');
-        const modalProps = document.getElementById('modalProps');
-        const toast = document.getElementById('toast');
-        const countAll = document.getElementById('countAll');
-        const countPlant = document.getElementById('countPlant');
-        const countZombie = document.getElementById('countZombie');
-        const countGuide = document.getElementById('gameGuide');
+            const allowedFilters = ['guide', 'all', 'plant', 'zombie'];
+            const requestedFilter = new URLSearchParams(window.location.search).get('tab');
 
-        // ================================================================
-        // 3. 工具函数
-        // ================================================================
-        function showToast(message, type = 'info', duration = 3000) {
-            toast.textContent = message;
-            toast.className = 'toast ' + type + ' show';
-            clearTimeout(toast._timer);
-            toast._timer = setTimeout(() => { toast.classList.remove('show'); }, duration);
-        }
+            let allData = null;
+            let currentFilter = allowedFilters.includes(requestedFilter) ? requestedFilter : 'guide';
+            let searchQuery = '';
+            let lastFocusedElement = null;
 
-        function getTypeLabel(type) {
-            if (type === 'plant') return '🌱 植物';
-            if (type === 'zombie') return '🧟 僵尸';
-            return '📰 资讯';
-        }
+            // DOM 引用
+            const grid = document.getElementById('gridContainer');
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            const statsCounter = document.getElementById('statsCounter');
+            const tabsContainer = document.getElementById('tabsContainer');
+            const modalOverlay = document.getElementById('modalOverlay');
+            const modalCloseBtn = document.getElementById('modalCloseBtn');
+            const modalIconContainer = document.getElementById('modalIconContainer');
+            const modalKicker = document.getElementById('modalKicker');
+            const modalName = document.getElementById('modalName');
+            const modalType = document.getElementById('modalType');
+            const modalDesc = document.getElementById('modalDesc');
+            const modalProps = document.getElementById('modalProps');
+            const modalActions = document.getElementById('modalActions');
+            const toast = document.getElementById('toast');
+            const countAll = document.getElementById('countAll');
+            const countPlant = document.getElementById('countPlant');
+            const countZombie = document.getElementById('countZombie');
+            const countGuide = document.getElementById('gameGuide');
 
-        function getTagClass(type) {
-            return type === 'plant' ? 'plant-tag' : 'zombie-tag';
-        }
-
-        function flattenData(data) {
-            if (!data) return [];
-            const plants = (data.plants || []).map(item => ({ ...item, type: 'plant' }));
-            const zombies = (data.zombies || []).map(item => ({ ...item, type: 'zombie' }));
-            const guides = (data.guides || []).map(item => ({ ...item, type: 'guide' }));
-            return [...plants, ...zombies, ...guides];
-        }
-
-        function filterItems(items, filter, query) {
-    let result = items;
-    if (filter === 'all') {
-        result = result.filter(i => i.type === 'plant' || i.type === 'zombie');
-    } else if (filter === 'plant') {
-        result = result.filter(i => i.type === 'plant');
-    } else if (filter === 'zombie') {
-        result = result.filter(i => i.type === 'zombie');
-    } else if (filter === 'guide') {
-        result = result.filter(i => i.type === 'guide');
-    }
-
-    if (query.trim()) {
-        const q = query.trim().toLowerCase();
-        result = result.filter(i => {
-            if (i.type === 'guide') {
-                const title = (i.title || '').toLowerCase();
-                const div = document.createElement('div');
-                div.innerHTML = i.content || '';
-                const textContent = div.textContent || '';
-                return title.includes(q) || textContent.toLowerCase().includes(q);
+            // ================================================================
+            // 2. 工具函数
+            // ================================================================
+            function escapeHtml(value) {
+                return String(value == null ? '' : value).replace(/[&<>"']/g, (char) => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#39;'
+                }[char]));
             }
-            return (i.name || '').toLowerCase().includes(q) ||
-                   (i.special || '').toLowerCase().includes(q) ||
-                   (i.description || '').toLowerCase().includes(q);
-        });
-    }
-    return result;
-}
 
-        function renderCardIcon(item) {
-            if (item.image && item.image.trim() !== '') {
-                return `<img src="${item.image}" alt="${item.name}" class="card-img" onerror="this.style.display='none'; this.parentNode.innerHTML='<span class=\\'card-emoji\\'>${item.emoji || '🌿'}</span>';">`;
-            } else {
-                return `<span class="card-emoji">${item.emoji || '🌿'}</span>`;
+            function formatDate(value) {
+                return String(value || '').replace(/-/g, '.');
             }
-        }
 
-        // ================================================================
-        // 4. 模态框（通用，支持 guide）
-        // ================================================================
-        function openModal(item, type) {
-            if (type === 'guide') {
-                // 资讯专用模态框
-                modalIconContainer.innerHTML = ''; // 无图标
-                modalName.textContent = item.title;
-                modalType.textContent = `📅 ${item.date}`;
-                modalType.style.background = '#f0f7eb';
-                modalDesc.innerHTML = item.content || '暂无内容';
-                modalDesc.style.borderLeftColor = '#8aaa7a';
-                let linkHtml = '';
-                if (item.link) {
-                    linkHtml = `<div style="margin-top:16px;text-align:center;">
-                        <a href="${item.link}" target="_blank" class="btn" style="background:#4d7c3f;color:#fff;padding:10px 24px;border-radius:40px;text-decoration:none;display:inline-block;">🔗 阅读原文</a>
-                    </div>`;
+            function isExternal(url) {
+                return /^https?:\/\//i.test(url || '');
+            }
+
+            function showToast(message, type = 'info', duration = 2400) {
+                toast.textContent = message;
+                toast.className = 'toast ' + type + ' show';
+                clearTimeout(toast._timer);
+                toast._timer = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, duration);
+            }
+
+            function getTypeLabel(type) {
+                if (type === 'plant') return '植物';
+                if (type === 'zombie') return '僵尸';
+                return '资讯';
+            }
+
+            function flattenData(data) {
+                if (!data) return [];
+                const plants = (data.plants || []).map(item => ({ ...item, type: 'plant' }));
+                const zombies = (data.zombies || []).map(item => ({ ...item, type: 'zombie' }));
+                const guides = (data.guides || []).map(item => ({ ...item, type: 'guide' }));
+                return [...plants, ...zombies, ...guides];
+            }
+
+            function filterItems(items, filter, query) {
+                let result = items;
+
+                if (filter === 'all') {
+                    result = result.filter(item => item.type === 'plant' || item.type === 'zombie');
+                } else if (filter === 'plant') {
+                    result = result.filter(item => item.type === 'plant');
+                } else if (filter === 'zombie') {
+                    result = result.filter(item => item.type === 'zombie');
+                } else if (filter === 'guide') {
+                    result = result.filter(item => item.type === 'guide');
                 }
-                modalProps.innerHTML = linkHtml;
-                modalOverlay.classList.add('open');
-                document.body.style.overflow = 'hidden';
-                return;
-            }
 
-            // 植物 / 僵尸 原有逻辑
-            const isPlant = type === 'plant';
-            if (item.image && item.image.trim() !== '') {
-                modalIconContainer.innerHTML =
-                    `<img src="${item.image}" alt="${item.name}" class="modal-img" onerror="this.style.display='none'; this.parentNode.innerHTML='<span class=\\'modal-emoji\\'>${item.emoji || '🌿'}</span>';">`;
-            } else {
-                modalIconContainer.innerHTML = `<span class="modal-emoji">${item.emoji || '🌿'}</span>`;
-            }
+                const keyword = query.trim().toLowerCase();
+                if (keyword) {
+                    result = result.filter(item => {
+                        if (item.type === 'guide') {
+                            const title = (item.title || '').toLowerCase();
+                            const holder = document.createElement('div');
+                            holder.innerHTML = item.content || '';
+                            const text = (holder.textContent || '').toLowerCase();
+                            return title.includes(keyword) || text.includes(keyword);
+                        }
 
-            modalName.textContent = item.name;
-            modalType.textContent = getTypeLabel(type);
-            modalType.style.background = isPlant ? '#e1f0d8' : '#efe6e6';
-            modalDesc.textContent = item.description || '暂无描述';
-            modalDesc.style.borderLeftColor = '#8aaa7a';
-
-            let propsHtml = '';
-            if (isPlant) {
-                const fields = [
-                    ['☀️ 阳光消耗', item.cost],
-                    ['❤️ 生命值', item.health],
-                    ['⚔️ 伤害', item.damage],
-                    ['📏 攻击范围', item.range || '无'],
-                    ['⏱️ 冷却速度', item.recharge || '中等'],
-                    ['✨ 能力', item.special || '无']
-                ];
-                fields.forEach(([label, value]) => {
-                    propsHtml +=
-                        `<div class="prop-item"><span class="label">${label}</span><span class="value plant-val">${value}</span></div>`;
-                });
-            } else {
-                const fields = [
-                    ['❤️ 生命值', item.health],
-                    ['💨 速度', item.speed || '普通'],
-                    ['⚔️ 伤害', item.damage || 50],
-                    ['✨ 能力', item.special || '无']
-                ];
-                fields.forEach(([label, value]) => {
-                    propsHtml +=
-                        `<div class="prop-item"><span class="label">${label}</span><span class="value zombie-val">${value}</span></div>`;
-                });
-            }
-            modalProps.innerHTML = propsHtml;
-
-            modalOverlay.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            modalOverlay.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-
-        modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
-        modalCloseBtn.addEventListener('click', closeModal);
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-
-        // ================================================================
-        // 5. 渲染
-        // ================================================================
-        function render() {
-            if (!allData) {
-                grid.innerHTML = `<div class="empty-state"><span class="big-emoji">📂</span><h3>数据加载失败</h3><p>请刷新页面重试</p></div>`;
-                statsCounter.textContent = '0 个条目';
-                countAll.textContent = '0';
-                countPlant.textContent = '0';
-                countZombie.textContent = '0';
-                countGuide.textContent = '0';
-                return;
-            }
-
-            const flat = flattenData(allData);
-            const filtered = filterItems(flat, currentFilter, searchQuery);
-
-            // 更新统计
-            statsCounter.textContent = filtered.length + ' 个条目';
-            const allItems = flat.filter(i => i.type === 'plant' || i.type === 'zombie');  // 只统计植物+僵尸
-            const plantItems = flat.filter(i => i.type === 'plant');
-            const zombieItems = flat.filter(i => i.type === 'zombie');
-            const guideItems = flat.filter(i => i.type === 'guide');
-            countAll.textContent = allItems.length;
-            countPlant.textContent = plantItems.length;
-            countZombie.textContent = zombieItems.length;
-            countGuide.textContent = guideItems.length;
-
-            // 激活 tab
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.filter === currentFilter);
-            });
-
-            if (filtered.length === 0) {
-                grid.innerHTML = `
-                    <div class="empty-state">
-                        <span class="big-emoji">🔍</span>
-                        <h3>没有找到匹配的条目</h3>
-                        <p>试试调整搜索关键词或切换分类</p>
-                    </div>
-                `;
-                return;
-            }
-
-            // ---- 根据类型渲染 ----
-            if (currentFilter === 'guide') {
-                // 渲染帖子列表
-                grid.style.display = 'block'; // 改为 block 以便帖子上下排列
-                grid.innerHTML = filtered.map(item => `
-                    <div class="post-card" data-id="${item.id}" data-type="guide">
-                        <div class="post-header">
-                            <h3 class="post-title">${item.title}</h3>
-                            <span class="post-date">📅 ${item.date}</span>
-                        </div>
-                        <div class="post-content">${item.content}</div>
-                        ${item.link ? `<a href="${item.link}" target="_blank" class="post-link">🔗 阅读原文</a>` : ''}
-                    </div>
-                `).join('');
-
-                // 绑定点击事件（点击整个卡片打开详情）
-                grid.querySelectorAll('.post-card').forEach(card => {
-                    card.addEventListener('click', (e) => {
-                        // 如果点击的是内部的链接，不触发卡片点击，避免冲突
-                        if (e.target.tagName === 'A') return;
-                        const id = card.dataset.id;
-                        const item = allData.guides.find(d => d.id === id);
-                        if (item) openModal(item, 'guide');
+                        return (item.name || '').toLowerCase().includes(keyword) ||
+                            (item.special || '').toLowerCase().includes(keyword) ||
+                            (item.description || '').toLowerCase().includes(keyword);
                     });
+                }
+
+                return result;
+            }
+
+            function bindImageFallbacks(root) {
+                root.querySelectorAll('.card-img, .modal-img').forEach((img) => {
+                    const fallback = () => {
+                        const container = img.closest('.card-art') || img.parentElement;
+                        if (!container) return;
+                        const emoji = img.dataset.emoji || '🌿';
+                        const isModal = img.classList.contains('modal-img');
+                        container.innerHTML = `<span class="${isModal ? 'modal-emoji' : 'card-emoji'}" aria-hidden="true">${escapeHtml(emoji)}</span>`;
+                    };
+
+                    img.addEventListener('error', fallback, { once: true });
+                    if (img.complete && img.naturalWidth === 0) fallback();
                 });
-            } else {
-                // 渲染卡片网格（植物 / 僵尸）
-                grid.style.display = 'grid';
-                grid.innerHTML = filtered.map(item => {
-                    const tagLabel = item.type === 'plant' ? '🌱 植物' : '🧟 僵尸';
-                    const tagClass = getTagClass(item.type);
-                    const costOrHealth = item.type === 'plant' ? `☀️ ${item.cost}` : `❤️ ${item.health}`;
-                    const extra = item.type === 'plant' ? (item.damage > 0 ? `⚔️ ${item.damage}` : '🌿 辅助') :
-                        `💨 ${item.speed}`;
+            }
+
+            // ================================================================
+            // 3. 卡片渲染
+            // ================================================================
+            function renderCardArt(item) {
+                if (item.image && String(item.image).trim() !== '') {
                     return `
-                        <div class="card" data-id="${item.id}" data-type="${item.type}">
-                            ${renderCardIcon(item)}
-                            <div class="name">${item.name}</div>
-                            <div class="sub">${costOrHealth} · ${extra}</div>
-                            <div class="tags">
-                                <span class="tag ${tagClass}">${tagLabel}</span>
-                                ${item.special ? `<span class="tag">✨ ${item.special}</span>` : ''}
-                            </div>
+                        <div class="card-art">
+                            <img class="card-img" src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name || '')}"
+                                loading="lazy" decoding="async" data-emoji="${escapeHtml(item.emoji || '🌿')}">
                         </div>
                     `;
-                }).join('');
+                }
 
-                // 绑定卡片点击
-                grid.querySelectorAll('.card').forEach(card => {
-                    card.addEventListener('click', () => {
-                        const id = card.dataset.id;
-                        const type = card.dataset.type;
-                        const dataArray = type === 'plant' ? allData.plants : allData.zombies;
-                        const item = dataArray.find(d => d.id === id);
-                        if (item) openModal(item, type);
+                return `<div class="card-art"><span class="card-emoji" aria-hidden="true">${escapeHtml(item.emoji || '🌿')}</span></div>`;
+            }
+
+            function renderGuideCard(item) {
+                const featured = FEATURED_GUIDES.has(item.id);
+                const cta = GUIDE_CTA[item.id] || '查看详情';
+                const hint = GUIDE_HINT[item.id] || (item.link ? '可查看详情' : '站内资讯');
+                const link = item.link || '';
+                const target = isExternal(link) ? ' target="_blank" rel="noopener"' : '';
+
+                const actionHtml = link
+                    ? `<a class="post-link" href="${escapeHtml(link)}"${target}>${escapeHtml(cta)}<span aria-hidden="true">→</span></a>`
+                    : `<span class="post-link">${escapeHtml(cta)}<span aria-hidden="true">→</span></span>`;
+
+                const topHtml = featured
+                    ? '<span class="featured-flag">激活必看</span>'
+                    : '<span class="post-kind">GUIDE / NEWS</span>';
+
+                return `
+                    <article class="post-card${featured ? ' post-card--featured' : ''}"
+                        data-id="${escapeHtml(item.id)}" data-type="guide"
+                        tabindex="0" role="button" aria-label="查看《${escapeHtml(item.title || '资讯')}》">
+                        <div class="post-card-top">
+                            ${topHtml}
+                            <time class="post-date" datetime="${escapeHtml(item.date || '')}">${escapeHtml(formatDate(item.date))}</time>
+                        </div>
+                        <h3 class="post-title">${escapeHtml(item.title || '未命名资讯')}</h3>
+                        <div class="post-content">${item.content || ''}</div>
+                        <div class="post-card-foot">
+                            <span class="post-foot-hint">${escapeHtml(hint)}</span>
+                            ${actionHtml}
+                        </div>
+                    </article>
+                `;
+            }
+
+            function renderCatalogCard(item) {
+                const isPlant = item.type === 'plant';
+                const typeLabel = getTypeLabel(item.type);
+                const meta = isPlant
+                    ? `☀ ${escapeHtml(item.cost)} · ❤ ${escapeHtml(item.health)}`
+                    : `❤ ${escapeHtml(item.health)} · 💨 ${escapeHtml(item.speed || '普通')}`;
+                const specialHtml = item.special
+                    ? `<span class="card-special">${escapeHtml(item.special)}</span>`
+                    : '';
+
+                return `
+                    <article class="card" data-id="${escapeHtml(item.id)}" data-type="${escapeHtml(item.type)}"
+                        tabindex="0" role="button" aria-label="查看${typeLabel} ${escapeHtml(item.name || '')} 的详细资料">
+                        <div class="card-top">
+                            <span class="tag">${typeLabel}</span>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        ${renderCardArt(item)}
+                        <h3 class="name">${escapeHtml(item.name || '未命名')}</h3>
+                        <div class="sub">${meta}</div>
+                        ${specialHtml}
+                    </article>
+                `;
+            }
+
+            // ================================================================
+            // 4. 渲染列表
+            // ================================================================
+            function render() {
+                if (!allData) {
+                    grid.innerHTML = `
+                        <div class="empty-state">
+                            <span class="big-emoji">📂</span>
+                            <h3>数据加载失败</h3>
+                            <p>请刷新页面重试</p>
+                        </div>
+                    `;
+                    statsCounter.textContent = '0 个条目';
+                    [countAll, countPlant, countZombie, countGuide].forEach((node) => {
+                        node.textContent = '0';
                     });
+                    return;
+                }
+
+                const flat = flattenData(allData);
+                const filtered = filterItems(flat, currentFilter, searchQuery);
+                const isGuide = currentFilter === 'guide';
+
+                statsCounter.textContent = `${filtered.length} ${FILTER_UNIT[currentFilter] || '个条目'}`;
+
+                const allItems = flat.filter(item => item.type === 'plant' || item.type === 'zombie');
+                countAll.textContent = allItems.length;
+                countPlant.textContent = flat.filter(item => item.type === 'plant').length;
+                countZombie.textContent = flat.filter(item => item.type === 'zombie').length;
+                countGuide.textContent = flat.filter(item => item.type === 'guide').length;
+
+                tabsContainer.querySelectorAll('.tab-btn').forEach((btn) => {
+                    const active = btn.dataset.filter === currentFilter;
+                    btn.classList.toggle('active', active);
+                    btn.setAttribute('aria-selected', String(active));
+                });
+
+                grid.classList.toggle('guide-grid', isGuide);
+                grid.classList.toggle('catalog-grid', !isGuide);
+
+                if (filtered.length === 0) {
+                    grid.innerHTML = `
+                        <div class="empty-state">
+                            <span class="big-emoji">🔍</span>
+                            <h3>没有找到匹配的内容</h3>
+                            <p>试试调整搜索关键词，或切换上方分类。</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                grid.innerHTML = isGuide
+                    ? filtered.map(renderGuideCard).join('')
+                    : filtered.map(renderCatalogCard).join('');
+
+                bindImageFallbacks(grid);
+            }
+
+            // ================================================================
+            // 5. 模态框
+            // ================================================================
+            function openModal(item, type) {
+                lastFocusedElement = document.activeElement;
+                modalType.className = 'modal-type';
+                modalActions.innerHTML = '';
+                modalProps.innerHTML = '';
+
+                if (type === 'guide') {
+                    const featured = FEATURED_GUIDES.has(item.id);
+                    modalIconContainer.innerHTML = `<span class="modal-mark" aria-hidden="true">${featured ? '★' : 'i'}</span>`;
+                    modalKicker.textContent = featured ? '激活必读 · ACTIVATION' : '游戏资讯 · GUIDE';
+                    modalName.textContent = item.title || '未命名资讯';
+                    modalType.textContent = `更新于 ${formatDate(item.date)}`;
+                    modalType.classList.add('is-guide');
+                    modalDesc.innerHTML = item.content || '<p>暂无内容</p>';
+
+                    if (item.link) {
+                        const cta = GUIDE_CTA[item.id] || '打开链接';
+                        const target = isExternal(item.link) ? ' target="_blank" rel="noopener"' : '';
+                        modalActions.innerHTML = `
+                            <a class="btn btn--dark" href="${escapeHtml(item.link)}"${target}>
+                                ${escapeHtml(cta)}
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M5 12h14M13 6l6 6-6 6" />
+                                </svg>
+                            </a>
+                        `;
+                    }
+                } else {
+                    const isPlant = type === 'plant';
+                    const typeLabel = isPlant ? '植物' : '僵尸';
+
+                    if (item.image && String(item.image).trim() !== '') {
+                        modalIconContainer.innerHTML = `
+                            <img class="modal-img" src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name || '')}"
+                                data-emoji="${escapeHtml(item.emoji || '🌿')}">
+                        `;
+                    } else {
+                        modalIconContainer.innerHTML = `<span class="modal-emoji" aria-hidden="true">${escapeHtml(item.emoji || '🌿')}</span>`;
+                    }
+
+                    modalKicker.textContent = isPlant ? '植物档案 · PLANT' : '僵尸档案 · ZOMBIE';
+                    modalName.textContent = item.name || '未命名';
+                    modalType.textContent = typeLabel;
+                    modalType.classList.add(isPlant ? 'is-plant' : 'is-zombie');
+                    modalDesc.textContent = item.description || '暂无描述';
+
+                    const fields = isPlant
+                        ? [
+                            ['阳光消耗', item.cost],
+                            ['生命值', item.health],
+                            ['伤害', item.damage],
+                            ['攻击范围', item.range || '无'],
+                            ['冷却速度', item.recharge || '中等'],
+                            ['能力', item.special || '无']
+                        ]
+                        : [
+                            ['生命值', item.health],
+                            ['速度', item.speed || '普通'],
+                            ['伤害', item.damage || 50],
+                            ['能力', item.special || '无']
+                        ];
+
+                    modalProps.innerHTML = fields.map(([label, value]) => `
+                        <div class="prop-item">
+                            <span class="label">${escapeHtml(label)}</span>
+                            <span class="value ${isPlant ? 'plant-val' : 'zombie-val'}">${escapeHtml(value)}</span>
+                        </div>
+                    `).join('');
+
+                    bindImageFallbacks(modalIconContainer);
+                }
+
+                modalOverlay.classList.add('open');
+                modalOverlay.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('modal-open');
+
+                requestAnimationFrame(() => modalCloseBtn.focus());
+            }
+
+            function closeModal() {
+                if (!modalOverlay.classList.contains('open')) return;
+                modalOverlay.classList.remove('open');
+                modalOverlay.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('modal-open');
+
+                if (lastFocusedElement && document.contains(lastFocusedElement)) {
+                    lastFocusedElement.focus();
+                }
+            }
+
+            function openItem(id, type) {
+                if (!allData) return;
+                const source = type === 'plant'
+                    ? allData.plants
+                    : type === 'zombie'
+                        ? allData.zombies
+                        : allData.guides;
+                const item = (source || []).find(entry => entry.id === id);
+                if (item) openModal(item, type);
+            }
+
+            // ================================================================
+            // 6. 事件绑定
+            // ================================================================
+            tabsContainer.addEventListener('click', (event) => {
+                const btn = event.target.closest('.tab-btn');
+                if (!btn || btn.dataset.filter === currentFilter) return;
+                currentFilter = btn.dataset.filter;
+                render();
+            });
+
+            grid.addEventListener('click', (event) => {
+                if (event.target.closest('a')) return;
+                const card = event.target.closest('[data-id][data-type]');
+                if (!card) return;
+                openItem(card.dataset.id, card.dataset.type);
+            });
+
+            grid.addEventListener('keydown', (event) => {
+                if (event.key !== 'Enter' && event.key !== ' ') return;
+                if (event.target.closest('a')) return;
+                const card = event.target.closest('[data-id][data-type]');
+                if (!card) return;
+                event.preventDefault();
+                openItem(card.dataset.id, card.dataset.type);
+            });
+
+            modalCloseBtn.addEventListener('click', closeModal);
+            modalOverlay.addEventListener('click', (event) => {
+                if (event.target === modalOverlay) closeModal();
+            });
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') closeModal();
+            });
+
+            function doSearch() {
+                searchQuery = searchInput.value;
+                render();
+            }
+
+            searchBtn.addEventListener('click', doSearch);
+            searchInput.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') doSearch();
+            });
+            searchInput.addEventListener('input', () => {
+                clearTimeout(searchInput._timer);
+                searchInput._timer = setTimeout(doSearch, 260);
+            });
+
+            // 复制 QQ 群号
+            async function copyText(text) {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(text);
+                    return;
+                }
+
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                textarea.remove();
+            }
+
+            document.querySelectorAll('[data-copy]').forEach((btn) => {
+                btn.addEventListener('click', async () => {
+                    const text = btn.dataset.copy;
+                    const hint = btn.querySelector('small');
+                    const original = hint ? hint.textContent : '';
+
+                    try {
+                        await copyText(text);
+                        if (hint) hint.textContent = '已复制群号 ✓';
+                        showToast(`QQ 群号 ${text} 已复制`, 'success');
+                        setTimeout(() => {
+                            if (hint && hint.textContent === '已复制群号 ✓') hint.textContent = original;
+                        }, 2200);
+                    } catch (error) {
+                        showToast('复制失败，请手动选择群号', 'error');
+                    }
+                });
+            });
+
+            // ================================================================
+            // 7. 初始化
+            // ================================================================
+            function initData() {
+                const hasExternalData = Array.isArray(window.PVZ_PLANTS) ||
+                    Array.isArray(window.PVZ_ZOMBIES) ||
+                    Array.isArray(window.PVZ_GUIDES);
+
+                if (!hasExternalData) {
+                    grid.innerHTML = `
+                        <div class="empty-state">
+                            <span class="big-emoji">📂</span>
+                            <h3>数据文件加载失败</h3>
+                            <p>请确认 data/plants.js、data/zombies.js、data/guides.js 存在。</p>
+                        </div>
+                    `;
+                    statsCounter.textContent = '0 个条目';
+                    return;
+                }
+
+                allData = {
+                    plants: (window.PVZ_PLANTS || []).map(item => ({ ...item })),
+                    zombies: (window.PVZ_ZOMBIES || []).map(item => ({ ...item })),
+                    guides: (window.PVZ_GUIDES || []).map(item => ({ ...item }))
+                };
+
+                render();
+                console.log('🌻 HazeNoTea 图鉴已加载：', {
+                    plants: allData.plants.length,
+                    zombies: allData.zombies.length,
+                    guides: allData.guides.length,
+                    activate: ACTIVATE_URL
                 });
             }
-        }
 
-        // ================================================================
-        // 6. 初始化数据
-        // ================================================================
-        function initData() {
-            // 数据由 data/plants.js、data/zombies.js、data/guides.js 提供
-            const hasExternalData = Array.isArray(window.PVZ_PLANTS) ||
-                                    Array.isArray(window.PVZ_ZOMBIES) ||
-                                    Array.isArray(window.PVZ_GUIDES);
-            if (!hasExternalData) {
-                grid.innerHTML = `<div class="empty-state"><span class="big-emoji">📂</span><h3>数据文件加载失败</h3><p>请确认 data/plants.js、data/zombies.js、data/guides.js 存在</p></div>`;
-                statsCounter.textContent = '0 个条目';
-                return;
-            }
-            allData = {
-                plants: (window.PVZ_PLANTS || []).map(p => ({ ...p })),
-                zombies: (window.PVZ_ZOMBIES || []).map(z => ({ ...z })),
-                guides: (window.PVZ_GUIDES || []).map(g => ({ ...g }))
-            };
-            render();
-            showToast('✅ 数据加载成功', 'success', 2000);
-        }
-
-        // ================================================================
-        // 7. 事件绑定
-        // ================================================================
-        tabsContainer.addEventListener('click', (e) => {
-            const btn = e.target.closest('.tab-btn');
-            if (!btn) return;
-            const filter = btn.dataset.filter;
-            if (filter === currentFilter) return;
-            currentFilter = filter;
-            render();
-        });
-
-        function doSearch() {
-            searchQuery = searchInput.value;
-            render();
-        }
-        searchBtn.addEventListener('click', doSearch);
-        searchInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') doSearch(); });
-        searchInput.addEventListener('input', () => {
-            clearTimeout(searchInput._timer);
-            searchInput._timer = setTimeout(doSearch, 300);
-        });
-
-        // ================================================================
-        // 8. 启动
-        // ================================================================
-        document.addEventListener('DOMContentLoaded', function() {
-            initData();
-            console.log('🌱 植物大战僵尸图鉴已启动（数据来自 data/*.js）');
-        });
+            document.addEventListener('DOMContentLoaded', initData);
+        })();
     </script>
 </body>
 </html>

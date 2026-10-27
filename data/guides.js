@@ -14,7 +14,7 @@ window.PVZ_GUIDES = [
         title: '游戏激活教程',
         date: '2026-09-20',
         content: `
-            <p>在激活之前最好看一下，点击下方“阅读原文”查看。</p>
+            <p>第一次激活？建议先完整看一遍图文教程。点击「查看激活教程」即可打开。</p>
         `,
         link: 'post/activateGuide.html'
     },
@@ -24,7 +24,7 @@ window.PVZ_GUIDES = [
         date: '2026-09-20',
         content: `
             <p>激活完整游戏，只用一次激活，永久解锁“我是僵尸”模式及后续所有收费内容。</p>
-            <p>点击下方“阅读原文”进入激活页面，最好看一下激活教程。</p>
+            <p>点击「立即激活」进入激活页面，最好先看一下激活教程。</p>
         `,
         link: 'https://hazenotea.github.io/HNT-PW/pages/activate/activate.html?game=com.hazenotea.pvz.watch'
     },
@@ -97,7 +97,7 @@ window.PVZ_GUIDES = [
         date: '2026-03-10',
         content: `
             <p>本游戏的版权声明...</p>
-            <p>点击阅读原文查看</p>
+            <p>点击「阅读全文」查看完整内容。</p>
         `,
         link: 'post/免责声明.html'
     },
