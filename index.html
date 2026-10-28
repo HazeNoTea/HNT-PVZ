@@ -1,11 +1,30 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-page-mode="atlas">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HazeNoTea｜植物大战僵尸 · 重制版</title>
     <meta name="description" content="HazeNoTea 植物大战僵尸重制版：一次激活，永久解锁「我是僵尸」模式及后续更新。含图文激活教程、植物图鉴与僵尸图鉴。" />
     <meta name="theme-color" content="#12351c" />
+    <script>
+        // 图鉴模式：无参数 / ?tab=plant / ?mode=atlas&from=xxx
+        // 激活模式：除 tab 外的任意参数，例如 ?from=watch、?source=qrcode
+        (() => {
+            const params = new URLSearchParams(window.location.search);
+            const requestedMode = (params.get('mode') || '').toLowerCase();
+            let pageMode = 'atlas';
+
+            if (requestedMode === 'activate' || requestedMode === 'activation') {
+                pageMode = 'activate';
+            } else if (requestedMode === 'atlas' || requestedMode === 'archive') {
+                pageMode = 'atlas';
+            } else if (!params.has('tab') && Array.from(params.keys()).length > 0) {
+                pageMode = 'activate';
+            }
+
+            document.documentElement.dataset.pageMode = pageMode;
+        })();
+    </script>
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="HazeNoTea" />
     <meta property="og:title" content="HazeNoTea｜植物大战僵尸 · 重制版" />
@@ -35,7 +54,10 @@
             </a>
 
             <nav class="nav" aria-label="主导航">
-                <a class="nav-link" href="#library">资讯与图鉴</a>
+                <a class="nav-link" href="#library">
+                    <span data-mode-only="atlas">图鉴档案</span>
+                    <span data-mode-only="activate">资讯与图鉴</span>
+                </a>
                 <a class="nav-link" href="#community">玩家社群</a>
                 <a class="nav-cta" href="https://hazenotea.github.io/HNT-PW/pages/activate/activate.html?game=com.hazenotea.pvz.watch" target="_blank" rel="noopener">
                     <span class="nav-cta-dot" aria-hidden="true"></span>
@@ -50,7 +72,7 @@
 
     <main class="page">
         <!-- ===== 首屏：激活入口 ===== -->
-        <section class="hero" aria-labelledby="heroTitle">
+        <section class="hero hero--activate" data-mode-only="activate" aria-labelledby="heroTitle">
             <span class="hero-ground" aria-hidden="true"></span>
 
             <div class="hero-copy">
@@ -148,8 +170,89 @@
             </div>
         </section>
 
+        <!-- ===== 首屏：图鉴入口（默认） ===== -->
+        <section class="hero hero--atlas" data-mode-only="atlas" aria-labelledby="atlasTitle">
+            <span class="hero-ground" aria-hidden="true"></span>
+
+            <div class="hero-copy">
+                <p class="eyebrow">HAZENOTEA · PVZ ARCHIVE</p>
+
+                <h1 id="atlasTitle">
+                    <picture class="hero-wordmark-wrap">
+                        <source srcset="common/element/hazenotea_title.webp" type="image/webp" />
+                        <img class="hero-wordmark" src="common/element/hazenotea_title-1200.png" alt="HazeNoTea" width="1200" height="393" />
+                    </picture>
+                    <span class="hero-title-sub">植物大战僵尸 · 重制版</span>
+                </h1>
+
+                <p class="hero-lead">
+                    完整收录 <strong><span data-count-plants>52</span> 种植物</strong>与
+                    <strong><span data-count-zombies>27</span> 种僵尸</strong>。
+                    输入名称、能力或描述，直接翻到你想查的档案。
+                </p>
+
+                <form class="hero-search" id="heroSearchForm" role="search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path d="m20 20-3.2-3.2"></path>
+                    </svg>
+                    <input type="search" id="heroSearchInput" placeholder="搜索植物 / 僵尸，例如「向日葵」" aria-label="搜索植物或僵尸" autocomplete="off" />
+                    <button type="submit">搜索图鉴</button>
+                </form>
+
+                <div class="hero-actions hero-actions--atlas">
+                    <a class="btn btn--primary btn--lg" href="#library" data-hero-filter="all">
+                        浏览全部图鉴
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg>
+                    </a>
+                    <a class="btn btn--ghost btn--lg" href="#library" data-hero-filter="plant">植物图鉴</a>
+                    <a class="btn btn--ghost btn--lg" href="#library" data-hero-filter="zombie">僵尸图鉴</a>
+                </div>
+            </div>
+
+            <div class="atlas-visual">
+                <div class="atlas-board" role="group" aria-label="图鉴速览">
+                    <div class="atlas-board-head">
+                        <span>LIVE ARCHIVE</span>
+                        <span><b data-count-plants>52</b> + <b data-count-zombies>27</b></span>
+                    </div>
+                    <div class="atlas-board-title">图鉴档案</div>
+
+                    <div class="atlas-mini-grid">
+                        <button class="atlas-mini" type="button" data-preview-id="sunflower" data-preview-type="plant">
+                            <span class="atlas-mini-art"><img src="common/plant/向日葵.png" alt="" decoding="async" /></span>
+                            <span class="atlas-mini-name">向日葵</span>
+                            <span class="atlas-mini-meta">植物 · 生产</span>
+                        </button>
+                        <button class="atlas-mini" type="button" data-preview-id="peashooter" data-preview-type="plant">
+                            <span class="atlas-mini-art"><img src="common/plant/豌豆射手.png" alt="" decoding="async" /></span>
+                            <span class="atlas-mini-name">豌豆射手</span>
+                            <span class="atlas-mini-meta">植物 · 远程</span>
+                        </button>
+                        <button class="atlas-mini" type="button" data-preview-id="normal" data-preview-type="zombie">
+                            <span class="atlas-mini-art"><img src="common/zombie/普通僵尸moving.png" alt="" decoding="async" /></span>
+                            <span class="atlas-mini-name">普通僵尸</span>
+                            <span class="atlas-mini-meta">僵尸 · 普通</span>
+                        </button>
+                        <button class="atlas-mini" type="button" data-preview-id="bucket" data-preview-type="zombie">
+                            <span class="atlas-mini-art"><img src="common/zombie/铁桶僵尸moving.png" alt="" decoding="async" /></span>
+                            <span class="atlas-mini-name">铁桶僵尸</span>
+                            <span class="atlas-mini-meta">僵尸 · 铁桶</span>
+                        </button>
+                    </div>
+
+                    <a class="atlas-board-link" href="#library" data-hero-filter="all">
+                        查看全部图鉴
+                        <span aria-hidden="true">→</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- ===== 快速说明 ===== -->
-        <div class="quick-strip" aria-label="激活要点">
+        <div class="quick-strip quick-strip--activate" data-mode-only="activate" aria-label="激活要点">
             <div class="quick-item">
                 <span class="quick-icon" aria-hidden="true">∞</span>
                 <div>
@@ -173,14 +276,38 @@
             </div>
         </div>
 
-        <!-- ===== 资讯与图鉴 ===== -->
+        <!-- ===== 图鉴统计 / 激活次入口 ===== -->
+        <div class="archive-strip" data-mode-only="atlas">
+            <div class="archive-stats" aria-label="图鉴收录数量">
+                <span><b data-count-plants>52</b> 种植物</span>
+                <span><b data-count-zombies>27</b> 种僵尸</span>
+                <span><b data-count-guides>9</b> 条资讯</span>
+            </div>
+            <div class="archive-cta">
+                <span>需要激活游戏？</span>
+                <a href="post/activateGuide.html">看教程</a>
+                <a class="archive-cta-main" href="https://hazenotea.github.io/HNT-PW/pages/activate/activate.html?game=com.hazenotea.pvz.watch" target="_blank" rel="noopener">
+                    前往激活 <span aria-hidden="true">→</span>
+                </a>
+            </div>
+        </div>
+
         <section class="library" id="library" aria-labelledby="libraryTitle">
             <div class="section-head">
                 <div>
-                    <p class="kicker">ARCHIVE &amp; GUIDES</p>
-                    <h2 id="libraryTitle">资讯与图鉴</h2>
+                    <p class="kicker">
+                        <span data-mode-only="atlas">PLANT &amp; ZOMBIE ARCHIVE</span>
+                        <span data-mode-only="activate">ARCHIVE &amp; GUIDES</span>
+                    </p>
+                    <h2 id="libraryTitle">
+                        <span data-mode-only="atlas">图鉴档案</span>
+                        <span data-mode-only="activate">资讯与图鉴</span>
+                    </h2>
                 </div>
-                <p>从激活公告、版本资讯，到每一种植物与僵尸的完整数据，都在这里。</p>
+                <p>
+                    <span data-mode-only="atlas">按分类浏览，或直接搜索名称与能力。点击任意卡片查看完整属性。</span>
+                    <span data-mode-only="activate">从激活公告、版本资讯，到每一种植物与僵尸的完整数据，都在这里。</span>
+                </p>
             </div>
 
             <div class="explorer">
@@ -316,14 +443,20 @@
 
             const allowedFilters = ['guide', 'all', 'plant', 'zombie'];
             const requestedFilter = new URLSearchParams(window.location.search).get('tab');
+            const PAGE_MODE = document.documentElement.dataset.pageMode === 'activate' ? 'activate' : 'atlas';
 
             let allData = null;
-            let currentFilter = allowedFilters.includes(requestedFilter) ? requestedFilter : 'guide';
+            let currentFilter = allowedFilters.includes(requestedFilter)
+                ? requestedFilter
+                : (PAGE_MODE === 'activate' ? 'guide' : 'all');
             let searchQuery = '';
             let lastFocusedElement = null;
 
             // DOM 引用
             const grid = document.getElementById('gridContainer');
+            const librarySection = document.getElementById('library');
+            const heroSearchForm = document.getElementById('heroSearchForm');
+            const heroSearchInput = document.getElementById('heroSearchInput');
             const searchInput = document.getElementById('searchInput');
             const searchBtn = document.getElementById('searchBtn');
             const statsCounter = document.getElementById('statsCounter');
@@ -377,6 +510,33 @@
                 if (type === 'plant') return '植物';
                 if (type === 'zombie') return '僵尸';
                 return '资讯';
+            }
+
+            function updatePublicCounts(plants, zombies, guides) {
+                document.querySelectorAll('[data-count-plants]').forEach((node) => {
+                    node.textContent = plants;
+                });
+                document.querySelectorAll('[data-count-zombies]').forEach((node) => {
+                    node.textContent = zombies;
+                });
+                document.querySelectorAll('[data-count-guides]').forEach((node) => {
+                    node.textContent = guides;
+                });
+            }
+
+            function scrollToLibrary(instant = false) {
+                if (!librarySection) return;
+
+                if (instant) {
+                    const root = document.documentElement;
+                    const previousBehavior = root.style.scrollBehavior;
+                    root.style.scrollBehavior = 'auto';
+                    librarySection.scrollIntoView({ block: 'start' });
+                    root.style.scrollBehavior = previousBehavior;
+                    return;
+                }
+
+                librarySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
 
             function flattenData(data) {
@@ -525,6 +685,7 @@
                     [countAll, countPlant, countZombie, countGuide].forEach((node) => {
                         node.textContent = '0';
                     });
+                    updatePublicCounts(0, 0, 0);
                     return;
                 }
 
@@ -535,10 +696,16 @@
                 statsCounter.textContent = `${filtered.length} ${FILTER_UNIT[currentFilter] || '个条目'}`;
 
                 const allItems = flat.filter(item => item.type === 'plant' || item.type === 'zombie');
+                const plantItems = flat.filter(item => item.type === 'plant');
+                const zombieItems = flat.filter(item => item.type === 'zombie');
+                const guideItems = flat.filter(item => item.type === 'guide');
+
                 countAll.textContent = allItems.length;
-                countPlant.textContent = flat.filter(item => item.type === 'plant').length;
-                countZombie.textContent = flat.filter(item => item.type === 'zombie').length;
-                countGuide.textContent = flat.filter(item => item.type === 'guide').length;
+                countPlant.textContent = plantItems.length;
+                countZombie.textContent = zombieItems.length;
+                countGuide.textContent = guideItems.length;
+
+                updatePublicCounts(plantItems.length, zombieItems.length, guideItems.length);
 
                 tabsContainer.querySelectorAll('.tab-btn').forEach((btn) => {
                     const active = btn.dataset.filter === currentFilter;
@@ -681,6 +848,45 @@
                 render();
             });
 
+            // 图鉴首屏：快捷分类 + 搜索
+            document.querySelectorAll('[data-hero-filter]').forEach((btn) => {
+                btn.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const filter = btn.dataset.heroFilter;
+                    if (!allowedFilters.includes(filter)) return;
+                    currentFilter = filter;
+                    searchQuery = '';
+                    searchInput.value = '';
+                    if (heroSearchInput) heroSearchInput.value = '';
+                    render();
+                    scrollToLibrary();
+                });
+            });
+
+            if (heroSearchForm) {
+                heroSearchForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const keyword = heroSearchInput.value.trim();
+                    if (!keyword) {
+                        heroSearchInput.focus();
+                        return;
+                    }
+
+                    currentFilter = 'all';
+                    searchQuery = keyword;
+                    searchInput.value = keyword;
+                    render();
+                    scrollToLibrary();
+                });
+            }
+
+            // 首屏速览卡片：直接打开对应档案
+            document.querySelectorAll('[data-preview-id]').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    openItem(btn.dataset.previewId, btn.dataset.previewType);
+                });
+            });
+
             grid.addEventListener('click', (event) => {
                 if (event.target.closest('a')) return;
                 const card = event.target.closest('[data-id][data-type]');
@@ -759,6 +965,17 @@
             // 7. 初始化
             // ================================================================
             function initData() {
+                if (PAGE_MODE === 'activate') {
+                    document.title = '激活游戏｜HazeNoTea · 植物大战僵尸重制版';
+                    const description = document.querySelector('meta[name="description"]');
+                    if (description) {
+                        description.setAttribute('content', 'HazeNoTea 植物大战僵尸重制版激活入口：一次激活，永久解锁「我是僵尸」模式及后续更新，附四步图文教程。');
+                    }
+                } else {
+                    searchInput.placeholder = '搜索植物 / 僵尸名称、能力…';
+                    searchInput.setAttribute('aria-label', '搜索植物或僵尸');
+                }
+
                 const hasExternalData = Array.isArray(window.PVZ_PLANTS) ||
                     Array.isArray(window.PVZ_ZOMBIES) ||
                     Array.isArray(window.PVZ_GUIDES);
@@ -772,6 +989,7 @@
                         </div>
                     `;
                     statsCounter.textContent = '0 个条目';
+                    updatePublicCounts(0, 0, 0);
                     return;
                 }
 
@@ -782,6 +1000,11 @@
                 };
 
                 render();
+
+                if (allowedFilters.includes(requestedFilter)) {
+                    requestAnimationFrame(() => scrollToLibrary(true));
+                }
+
                 console.log('🌻 HazeNoTea 图鉴已加载：', {
                     plants: allData.plants.length,
                     zombies: allData.zombies.length,
