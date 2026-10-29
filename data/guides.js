@@ -50,7 +50,7 @@ window.PVZ_GUIDES = [
     },
     {
         id: 'guide5',
-        title: '赞助作者',
+        title: '来爱发电赞助作者',
         date: '2026-03-17',
         content: `
             <p>游戏制作不易，觉得好玩可以赞助一下作者😍</p>
@@ -73,16 +73,6 @@ window.PVZ_GUIDES = [
     },
     {
         id: 'guide7',
-        title: '僵尸生成配置工具',
-        date: '2026-07-10',
-        content: `
-            <p>作者自用的关卡僵尸生成配置工具</p>
-            <p>作者制作关卡用的，一般人没什么用</p>
-        `,
-        link: 'tools/僵尸配置器.html'
-    },
-    {
-        id: 'guide8',
         title: '免责声明',
         date: '2026-03-10',
         content: `
