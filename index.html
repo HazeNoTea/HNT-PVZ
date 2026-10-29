@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HazeNoTea｜植物大战僵尸 · 重制版</title>
-    <meta name="description" content="HazeNoTea 植物大战僵尸重制版：一次激活，永久解锁「我是僵尸」模式及后续更新。含图文激活教程、植物图鉴与僵尸图鉴。" />
+    <meta name="description" content="HazeNoTea 植物大战僵尸重制版：永久解锁「我是僵尸」模式及后续更新。含图文教程、植物图鉴与僵尸图鉴。" />
     <meta name="theme-color" content="#12351c" />
     <script>
         // 图鉴模式：无参数 / ?tab=plant / ?mode=atlas&from=xxx
-        // 激活模式：除 tab 外的任意参数，例如 ?from=watch、?source=qrcode
+        // 解锁模式：除 tab 外的任意参数，例如 ?from=watch、?source=qrcode
         (() => {
             const params = new URLSearchParams(window.location.search);
             const requestedMode = (params.get('mode') || '').toLowerCase();
@@ -28,7 +28,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="HazeNoTea" />
     <meta property="og:title" content="HazeNoTea｜植物大战僵尸 · 重制版" />
-    <meta property="og:description" content="游戏激活入口、图文教程与完整植物 / 僵尸图鉴。" />
+    <meta property="og:description" content="游戏解锁入口、图文教程与完整植物 / 僵尸图鉴。" />
     <meta property="og:url" content="https://hazenotea.github.io/HNT-PVZ/" />
     <meta property="og:image" content="https://hazenotea.github.io/HNT-PVZ/common/logo.png" />
     <link rel="canonical" href="https://hazenotea.github.io/HNT-PVZ/" />
@@ -59,9 +59,9 @@
                     <span data-mode-only="activate">资讯与图鉴</span>
                 </a>
                 <a class="nav-link" href="#community">玩家社群</a>
-                <a class="nav-cta" href="https://hazenotea.github.io/HNT-PW/pages/activate/activate.html?game=com.hazenotea.pvz.watch" target="_blank" rel="noopener">
+                <a class="nav-cta" href="post/activateGuide.html" target="_blank" rel="noopener">
                     <span class="nav-cta-dot" aria-hidden="true"></span>
-                    激活游戏
+                    获取解锁码图文教程
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M5 12h14M13 6l6 6-6 6" />
                     </svg>
@@ -71,35 +71,35 @@
     </header>
 
     <main class="page">
-        <!-- ===== 首屏：激活入口 ===== -->
+        <!-- ===== 首屏：获取解锁码入口 ===== -->
         <section class="hero hero--activate" data-mode-only="activate" aria-labelledby="heroTitle">
             <span class="hero-ground" aria-hidden="true"></span>
 
             <div class="hero-copy">
-                <p class="eyebrow">HAZENOTEA · PVZ REMASTERED</p>
+                <p class="eyebrow">HAZENOTEA · MIBAND PVZ REMASTERED</p>
 
                 <h1 id="heroTitle">
                     <picture class="hero-wordmark-wrap">
                         <source srcset="common/element/hazenotea_title.webp" type="image/webp" />
                         <img class="hero-wordmark" src="common/element/hazenotea_title-1200.png" alt="HazeNoTea" width="1200" height="393" />
                     </picture>
-                    <span class="hero-title-sub">植物大战僵尸 · 重制版</span>
+                    <span class="hero-title-sub">植物大战僵尸 · 米环重制版</span>
                 </h1>
 
                 <p class="hero-lead">
-                    一次激活，永久解锁<strong>「我是僵尸」</strong>模式及后续全部更新内容。
-                    准备好爱发电订单号和手环设备码，跟着教程几分钟就能完成。
+                    获取解锁码，永久解锁<strong>「我是僵尸」、「坚果保龄球」</strong>模式及后续全部更新内容。
+                    建议先看教程，再去获取解锁码。
                 </p>
 
                 <div class="hero-actions">
-                    <a class="btn btn--primary btn--lg" href="https://hazenotea.github.io/HNT-PW/pages/activate/activate.html?game=com.hazenotea.pvz.watch" target="_blank" rel="noopener">
-                        激活游戏
+                    <a class="btn btn--primary btn--lg" href="post/activateGuide.html" target="_blank" rel="noopener">
+                        图文教程
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M5 12h14M13 6l6 6-6 6" />
                         </svg>
                     </a>
-                    <a class="btn btn--ghost btn--lg" href="post/activateGuide.html">
-                        查看激活教程
+                    <a class="btn btn--ghost btn--lg" href="https://hazenotea.github.io/HNT-PW/pages/activate/activate.html?game=com.hazenotea.pvz.watch">
+                        获取解锁码
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
                             <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z" />
@@ -107,64 +107,64 @@
                     </a>
                 </div>
 
-                <ul class="hero-checks" aria-label="激活说明">
-                    <li>一次激活，永久解锁</li>
+                <!--<ul class="hero-checks" aria-label="解锁说明">
+                    <li>一次赞助，永久解锁</li>
                     <li>后续更新持续可用</li>
                     <li>全程有图文教程</li>
-                </ul>
+                </ul>-->
             </div>
 
             <div class="hero-visual">
                 <img class="hero-zombie" src="common/element/学者僵尸.png" alt="" aria-hidden="true" />
                 <img class="hero-plant" src="common/element/向日葵.png" alt="" aria-hidden="true" />
 
-                <aside class="activation-pass" aria-label="激活流程">
+                <aside class="activation-pass" aria-label="解锁流程">
                     <div class="pass-head">
                         <span class="pass-label">ACTIVATION PASS</span>
                         <span class="pass-status">READY</span>
                     </div>
                     <div class="pass-body">
-                        <h2>四步完成游戏激活</h2>
-                        <p class="pass-sub">一次激活，永久解锁后续内容</p>
+                        <h2>四步完成游戏解锁</h2>
+                        <!--<p class="pass-sub">一次赞助，永久解锁后续内容</p>-->
 
                         <ol class="pass-steps">
                             <li class="pass-step">
                                 <span class="pass-num">01</span>
                                 <span>
-                                    <strong>赞助并保存订单号</strong>
-                                    <small>任选一个爱发电赞助项目</small>
+                                    <strong>赞助并复制订单号</strong>
+                                    <small>选择正确的爱发电赞助项目</small>
                                 </span>
                             </li>
                             <li class="pass-step">
                                 <span class="pass-num">02</span>
                                 <span>
-                                    <strong>找到激活网站</strong>
-                                    <small>扫描二维码或访问官网</small>
+                                    <strong>找到手环上的设备码</strong>
+                                    <small>设备码在游戏里面哦</small>
                                 </span>
                             </li>
                             <li class="pass-step">
                                 <span class="pass-num">03</span>
                                 <span>
-                                    <strong>输入设备码与订单号</strong>
+                                    <strong>进入解锁页面获取解锁码</strong>
                                     <small>填写手环设备码和订单号</small>
                                 </span>
                             </li>
                             <li class="pass-step">
                                 <span class="pass-num">04</span>
                                 <span>
-                                    <strong>获取解锁码</strong>
-                                    <small>按手环端提示完成激活</small>
+                                    <strong>输入解锁码</strong>
+                                    <small>在手环上输入解锁码</small>
                                 </span>
                             </li>
                         </ol>
 
-                        <a class="pass-action" href="https://hazenotea.github.io/HNT-PW/pages/activate/activate.html?game=com.hazenotea.pvz.watch" target="_blank" rel="noopener">
-                            前往激活页面
+                        <!--<a class="pass-action" href="https://hazenotea.github.io/HNT-PW/pages/activate/activate.html?game=com.hazenotea.pvz.watch" target="_blank" rel="noopener">
+                            前往解锁页面
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <path d="M5 12h14M13 6l6 6-6 6" />
                             </svg>
-                        </a>
-                        <p class="pass-foot">第一次激活？<a href="post/activateGuide.html">先看图文教程</a></p>
+                        </a>-->
+                        <p class="pass-foot"><a href="post/activateGuide.html">查看完整图文教程</a></p>
                     </div>
                 </aside>
             </div>
@@ -175,18 +175,18 @@
             <span class="hero-ground" aria-hidden="true"></span>
 
             <div class="hero-copy">
-                <p class="eyebrow">HAZENOTEA · PVZ ARCHIVE</p>
+                <p class="eyebrow">HAZENOTEA · MIBAND PVZ ARCHIVE</p>
 
                 <h1 id="atlasTitle">
                     <picture class="hero-wordmark-wrap">
                         <source srcset="common/element/hazenotea_title.webp" type="image/webp" />
                         <img class="hero-wordmark" src="common/element/hazenotea_title-1200.png" alt="HazeNoTea" width="1200" height="393" />
                     </picture>
-                    <span class="hero-title-sub">植物大战僵尸 · 重制版</span>
+                    <span class="hero-title-sub">植物大战僵尸 · 米环重制版</span>
                 </h1>
 
                 <p class="hero-lead">
-                    完整收录 <strong><span data-count-plants>52</span> 种植物</strong>与
+                    共收录 <strong><span data-count-plants>52</span> 种植物</strong>与
                     <strong><span data-count-zombies>27</span> 种僵尸</strong>。
                     输入名称、能力或描述，直接翻到你想查的档案。
                 </p>
@@ -252,18 +252,18 @@
         </section>
 
         <!-- ===== 快速说明 ===== -->
-        <div class="quick-strip quick-strip--activate" data-mode-only="activate" aria-label="激活要点">
-            <div class="quick-item">
+        <div class="quick-strip quick-strip--activate" data-mode-only="activate" aria-label="解锁要点">
+            <!--<div class="quick-item">
                 <span class="quick-icon" aria-hidden="true">∞</span>
                 <div>
                     <strong>永久解锁</strong>
-                    <p>一次激活，「我是僵尸」模式及后续更新持续可用。</p>
+                    <p>一次解锁，「我是僵尸」模式及后续更新持续可用。</p>
                 </div>
             </div>
             <div class="quick-item">
                 <span class="quick-icon" aria-hidden="true">4</span>
                 <div>
-                    <strong>四步完成激活</strong>
+                    <strong>四步完成解锁</strong>
                     <p>跟着教程，从赞助、订单号到解锁码一步步完成。</p>
                 </div>
             </div>
@@ -271,12 +271,12 @@
                 <span class="quick-icon" aria-hidden="true">?</span>
                 <div>
                     <strong>教程兜底</strong>
-                    <p>每个步骤都配了截图，第一次激活也能顺利完成。</p>
+                    <p>每个步骤都配了截图，第一次也能顺利完成。</p>
                 </div>
-            </div>
+            </div>-->
         </div>
 
-        <!-- ===== 图鉴统计 / 激活次入口 ===== -->
+        <!-- ===== 图鉴统计 / 解锁次入口 ===== -->
         <div class="archive-strip" data-mode-only="atlas">
             <div class="archive-stats" aria-label="图鉴收录数量">
                 <span><b data-count-plants>52</b> 种植物</span>
@@ -284,10 +284,10 @@
                 <span><b data-count-guides>9</b> 条资讯</span>
             </div>
             <div class="archive-cta">
-                <span>需要激活游戏？</span>
+                <span>获取解锁码？</span>
                 <a href="post/activateGuide.html">看教程</a>
                 <a class="archive-cta-main" href="https://hazenotea.github.io/HNT-PW/pages/activate/activate.html?game=com.hazenotea.pvz.watch" target="_blank" rel="noopener">
-                    前往激活 <span aria-hidden="true">→</span>
+                    前往解锁页面 <span aria-hidden="true">→</span>
                 </a>
             </div>
         </div>
@@ -306,7 +306,7 @@
                 </div>
                 <p>
                     <span data-mode-only="atlas">按分类浏览，或直接搜索名称与能力。点击任意卡片查看完整属性。</span>
-                    <span data-mode-only="activate">从激活公告、版本资讯，到每一种植物与僵尸的完整数据，都在这里。</span>
+                    <span data-mode-only="activate">从公告、版本资讯，到每一种植物与僵尸的完整数据，都在这里。</span>
                 </p>
             </div>
 
@@ -351,7 +351,7 @@
             <div class="community-copy">
                 <p class="kicker">JOIN THE LAWN</p>
                 <h2 id="communityTitle">和其他玩家一起守草坪</h2>
-                <p>版本通知、玩法交流、激活问题反馈，都可以在社群和作者主页找到。</p>
+                <p>版本通知、玩法交流、问题反馈，都可以在社群和作者主页找到。</p>
             </div>
 
             <div class="community-links">
@@ -383,11 +383,11 @@
                 </div>
             </div>
             <div class="footer-links">
-                <a href="post/activateGuide.html">激活教程</a>
-                <a href="https://hazenotea.github.io/HNT-PW/pages/activate/activate.html?game=com.hazenotea.pvz.watch" target="_blank" rel="noopener">激活游戏</a>
+                <a href="post/activateGuide.html">解锁教程</a>
+                <a href="https://hazenotea.github.io/HNT-PW/pages/activate/activate.html?game=com.hazenotea.pvz.watch" target="_blank" rel="noopener">解锁游戏</a>
                 <a href="post/免责声明.html">免责声明</a>
             </div>
-            <p class="footer-copy">© 2026 HazeNoTea · 本站为游戏激活入口、资讯与图鉴。游戏版权归原权利方所有。</p>
+            <p class="footer-copy">© 2026 HazeNoTea · 本站为游戏解锁入口、资讯与图鉴。游戏版权归原权利方所有。</p>
         </footer>
     </main>
 
@@ -424,15 +424,15 @@
             const ACTIVATE_URL = 'https://hazenotea.github.io/HNT-PW/pages/activate/activate.html?game=com.hazenotea.pvz.watch';
             const FEATURED_GUIDES = new Set(['guide1', 'guide2']);
             const GUIDE_CTA = {
-                guide1: '查看激活教程',
-                guide2: '立即激活',
+                guide1: '获取解锁码图文教程',
+                guide2: '立即解锁',
                 guide7: '前往 B 站',
                 guide8: '打开配置器',
                 guide9: '阅读全文'
             };
             const GUIDE_HINT = {
                 guide1: '4 步图文教程',
-                guide2: '一次激活 · 永久解锁'
+                guide2: '一次获取 · 永久解锁'
             };
             const FILTER_UNIT = {
                 guide: '条资讯',
@@ -623,7 +623,7 @@
                     : `<span class="post-link">${escapeHtml(cta)}<span aria-hidden="true">→</span></span>`;
 
                 const topHtml = featured
-                    ? '<span class="featured-flag">激活必看</span>'
+                    ? '<span class="featured-flag">解锁必看</span>'
                     : '<span class="post-kind">GUIDE / NEWS</span>';
 
                 return `
@@ -746,7 +746,7 @@
                 if (type === 'guide') {
                     const featured = FEATURED_GUIDES.has(item.id);
                     modalIconContainer.innerHTML = `<span class="modal-mark" aria-hidden="true">${featured ? '★' : 'i'}</span>`;
-                    modalKicker.textContent = featured ? '激活必读 · ACTIVATION' : '游戏资讯 · GUIDE';
+                    modalKicker.textContent = featured ? '解锁必读 · ACTIVATION' : '游戏资讯 · GUIDE';
                     modalName.textContent = item.title || '未命名资讯';
                     modalType.textContent = `更新于 ${formatDate(item.date)}`;
                     modalType.classList.add('is-guide');
@@ -966,10 +966,10 @@
             // ================================================================
             function initData() {
                 if (PAGE_MODE === 'activate') {
-                    document.title = '激活游戏｜HazeNoTea · 植物大战僵尸重制版';
+                    document.title = '解锁游戏｜HazeNoTea · 植物大战僵尸重制版';
                     const description = document.querySelector('meta[name="description"]');
                     if (description) {
-                        description.setAttribute('content', 'HazeNoTea 植物大战僵尸重制版激活入口：一次激活，永久解锁「我是僵尸」模式及后续更新，附四步图文教程。');
+                        description.setAttribute('content', 'HazeNoTea 植物大战僵尸重制版解锁入口：一次获取，永久解锁「我是僵尸」模式及后续更新，附四步图文教程。');
                     }
                 } else {
                     searchInput.placeholder = '搜索植物 / 僵尸名称、能力…';

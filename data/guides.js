@@ -11,20 +11,19 @@
 window.PVZ_GUIDES = [
     {
         id: 'guide1',
-        title: '游戏激活教程',
+        title: '获取解锁码图文教程',
         date: '2026-09-20',
         content: `
-            <p>第一次激活？建议先完整看一遍图文教程。点击「查看激活教程」即可打开。</p>
+            <p>建议先完整看一遍图文教程。点击下方按钮「获取解锁码图文教程」即可打开。</p>
         `,
         link: 'post/activateGuide.html'
     },
     {
         id: 'guide2',
-        title: '游戏激活',
+        title: '获取解锁码',
         date: '2026-09-20',
         content: `
-            <p>激活完整游戏，只用一次激活，永久解锁“我是僵尸”模式及后续所有收费内容。</p>
-            <p>点击「立即激活」进入激活页面，最好先看一下激活教程。</p>
+            <p>点击下方「立即解锁」进入解锁页面，最好先看一下图文教程。</p>
         `,
         link: 'https://hazenotea.github.io/HNT-PW/pages/activate/activate.html?game=com.hazenotea.pvz.watch'
     },
@@ -74,15 +73,6 @@ window.PVZ_GUIDES = [
     },
     {
         id: 'guide7',
-        title: '作者的B站',
-        date: '2026-08-15',
-        content: `
-            <p>来B站支持作者</p>
-        `,
-        link: 'https://space.bilibili.com/364345419'
-    },
-    {
-        id: 'guide8',
         title: '僵尸生成配置工具',
         date: '2026-07-10',
         content: `
@@ -92,7 +82,7 @@ window.PVZ_GUIDES = [
         link: 'tools/僵尸配置器.html'
     },
     {
-        id: 'guide9',
+        id: 'guide8',
         title: '免责声明',
         date: '2026-03-10',
         content: `
